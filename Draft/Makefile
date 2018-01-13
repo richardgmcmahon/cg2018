@@ -48,8 +48,8 @@ info:
 tar:
 	@echo 'DATESTAMP: ' $(DATESTAMP)
 	mkdir -p $(BACKUP_TAR_PATH)
-	tar -cvf $(ROOT_PATH)/CG2016_2019_$(DATESTAMP)_backup.tar  -C $(ROOT_PATH)/Draft .
-	cp $(ROOT_PATH)CG2016_2019_$(DATESTAMP)_backup.tar $(BACKUP_TAR_PATH)/.
+	tar -cvf $(ROOT_PATH)/CG2019_2022_$(DATESTAMP)_backup.tar  -C $(ROOT_PATH)/Draft .
+	cp $(ROOT_PATH)CG2019_2022_$(DATESTAMP)_backup.tar $(BACKUP_TAR_PATH)/.
 
 all: $(MASTER).pdf
 	@echo $(OS)
@@ -64,12 +64,12 @@ submit:
 	@echo $(OS)
 	pdflatex $(MASTER)
 	pdflatex $(MASTER)
-	cp $(MASTER).pdf $(BACKUP_PATH)/CG2016_2019_IOA_final.pdf
-	cp $(MASTER).pdf $(BACKUP_PATH)/CG2016_2019_IOA_final_$(DATESTAMP).pdf
+	cp $(MASTER).pdf $(BACKUP_PATH)/CG2019_2022_IOA_final.pdf
+	cp $(MASTER).pdf $(BACKUP_PATH)/CG2019_2022_IOA_final_$(DATESTAMP).pdf
 	$(OPEN) $(MASTER).pdf
 	@echo 'DATESTAMP: ' $(DATESTAMP)
-	tar -cvf $(ROOT_PATH)/CG2016_2019_$(DATESTAMP)_backup.tar  -C $(ROOT_PATH)/Draft .
-	cp $(ROOT_PATH)CG2016_2019_$(DATESTAMP)_backup.tar $(BACKUP_TAR_PATH)/.
+	tar -cvf $(ROOT_PATH)/CG2019_2022_$(DATESTAMP)_backup.tar  -C $(ROOT_PATH)/Draft .
+	cp $(ROOT_PATH)CG2019_2022_$(DATESTAMP)_backup.tar $(BACKUP_TAR_PATH)/.
 
 
 open:
@@ -79,8 +79,8 @@ open:
 $(MASTER).pdf: $(MASTER).tex 
 	pdflatex $(MASTER)
 	pdflatex $(MASTER)
-	cp $(MASTER).pdf /home/rgm/public_html/private/CG2016_2019/.
-	cp $(MASTER).pdf /home/rgm/public_html/private/CG2016_2019/$(MASTER)_$(DATESTAMP).pdf
+	cp $(MASTER).pdf /home/rgm/public_html/private/$(MASTER)/.
+	cp $(MASTER).pdf /home/rgm/public_html/private/$(MASTER)/$(MASTER)_$(DATESTAMP).pdf
 	$(OPEN) $(MASTER).pdf 
 
 clean:
