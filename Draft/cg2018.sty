@@ -1,0 +1,242 @@
+%
+% IoA Consolidated PATT2 style file.
+% based on patt2.sty file written by rgm in 1996
+%
+% https://en.wikibooks.org/wiki/LaTeX/Creating_Packages
+%
+% https://www.sharelatex.com/learn/Writing_your_own_package
+% See examplepackage.sty from ShareLatex
+%
+% Essential reading for programmers:
+%   The Tex Book, Chapter 20
+%%
+%% History:
+%%
+%%  1.0
+%% Stop immediately if we are not using PDF
+%%-----------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cg2018}[IoA STFC Consolidated Grant 2018]
+\newcommand{\checkmessage}{\message{Hello World}}
+\checkmessage
+
+% Needed for Paul Hewett's case
+\usepackage{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{currfile}
+% \usepackage{currfile}
+% \usepackage{currfile, abspath}
+% \usepackage{currfile-abspath}
+\usepackage[abspath]{currfile}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lastpage}
+\usepackage{fancyhdr}
+%\pagestyle{fancy}
+\pagestyle{headings}
+
+
+\newif\ifdebuglayout
+\newif\ifdraftlayout
+
+%%This parts handles the options passed to the package.
+
+% examples
+\DeclareOption*{\PackageWarning{cg2018}{Unknown ‘\CurrentOption’}}
+%
+\DeclareOption{draft}{\draftlayouttrue}
+\DeclareOption{debug}{\debuglayouttrue}
+\ProcessOptions\relax
+
+%%Body of the package, most of the declarations appear here.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% choose font 
+%\usepackage{fontspec}
+%\setmainfont{arial}
+%\usepackage{uarial}
+%\usepackage{helvet}
+%\usepackage{arial}
+%\usepackage{times}
+%\usepackage{fontspec}
+%\setmainfont{Arial}
+
+\usepackage{helvet} % =Arial
+\usepackage[helvet]{sfmath} % needed for maths according to Ollie S.
+\renewcommand{\rmdefault}{phv} % =Arial
+\renewcommand{\sfdefault}{phv} % =Arial
+\renewcommand{\familydefault}{\sfdefault}
+\DeclareTextFontCommand{\textttup}{\normalfont\ttfamily}
+
+% use this to allow underscore printing for filenames
+\usepackage[T1]{fontenc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% some conditional options 
+%http://tex.stackexchange.com/questions/5894/latex-conditional-expression
+% debug layout option
+%\newif\ifdebuglayout
+% turn off
+%\debuglayoutfalse
+% turn on
+% \debuglayouttrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% option for drafting stage
+% draft layout option
+%\newif\ifdraftlayout
+% \draftlayouttrue
+% \draftlayoutfalse
+%\draftlayouttrue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% commands to write out font info; useful for debugging
+\newcommand{\printinternalcurrentfont}{
+  \expandafter\textttup\expandafter{\expandafter\string\the\font}}
+\newcommand{\printexternalcurrentfont}{
+  \expandafter\textttup\expandafter{\fontname\font}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%http://www.howtotex.com/tips-tricks/two-sided-latex-page-margins/
+% default article has different margins on odd/even pages
+% to get symmetric
+%\setlength{\oddsidemargin}{5mm}
+%\setlength{\evensidemargin}{5mm}
+% or use
+%\usepackage[hmarginratio=1:1]{geometry}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{currfile}
+% \usepackage{currfile}
+%\usepackage{currfile, abspath}
+\usepackage{currfile-abspath}
+%\usepackage[abspath]{currfile}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use this to have two independent table of contents
+\usepackage{titletoc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% layout details
+% The package layout defines a command \layout, which will show a summary
+% of the layout of the current document.
+\usepackage{layout} % creates a graph of the page layout
+\usepackage{layouts} % has the \pagevalues command for printing layout
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% specify the text layout
+%
+% \textheight 670pt
+% \textwidth 460pt
+% \topmargin -1cm
+% \oddsidemargin -.5mm
+%GPE
+%\textheight=26.2cm
+%\topmargin=-3.5cm
+
+%RGM-2014-12-12
+\textwidth=17cm
+\textheight=26.0cm
+\topmargin=-2.5cm
+\oddsidemargin=-0.5cm
+\parskip=0.15cm
+\parindent=0pt
+\marginparsep=5pt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% timestamp info
+%       Current time; this may be system dependent!
+\newcount\hours
+ \newcount\minutes
+  \def\SetTime{\hours=\time
+         \global\divide\hours by 60
+         \minutes=\hours
+         \multiply\minutes by 60
+         \advance\minutes by-\time
+         \global\multiply\minutes by-1 }
+\SetTime
+\def\now{\number\hours:\ifnum\minutes<10 0\fi\number\minutes}
+% These do not quite work in Latex using \write
+\def\Now{\today\ \now}
+\def\@Now{\today\ \now}
+
+
+
+\newcommand{\layoutpagecheck}
+{
+    \AddToShipoutPicture*{\ShowFramePicture}
+
+    \maketitle
+    {\centering\footnotesize Printed at: \now}
+
+    %{\centering \fullpath}
+    %\centering{\currfiledir}
+    %\centering{\currfileabsdir}
+    %\centering{\currfilepath}
+    {\centering \footnotesize \currfileabspath}
+
+    {\centering \footnotesize 
+    \url{http://www.ast.cam.ac.uk/~rgm/private/CG2019_2022/}}
+
+    {\centering \footnotesize 
+    \url{http://local.ast.cam.ac.uk/administration/academic-staff-resources/grants/cg2019_2022}}
+
+    {\centering \footnotesize
+    \href{http://www.stfc.ac.uk/research/astronomy-and-space-science/astronomy-space-science-programme/astronomy-research-grants/}{STFC Grants Panel information}}
+
+\hrule
+
+\medskip
+{\bf Current font\newline}
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ \newline
+    abcdefghijklmnopqrstuvwxyz \newline
+    The quick brown fox jumps over the lazy dog \newline
+    % write out font information
+    internal: \printinternalcurrentfont \newline
+    external: \printexternalcurrentfont 
+\hrule
+
+\fontfamily{ptm}\selectfont{
+{\bf Times:ptm \newline}
+ABCDEFGHIJKLMNOPQRSTUVWXYZ \hfill\break
+\noindent abcdefghijklmnopqrstuvwxyz \hfill\break
+\noindent The quick brown fox jumps over the lazy dog \hfill\break
+printinternalcurrentfont: \printinternalcurrentfont \hfill\break
+printexternalcurrentfont: \printexternalcurrentfont}
+\hrule
+
+    \marginpar{A note in the margins.}
+
+    \pagevalues
+    \hrule
+
+    \printinunitsof{mm}
+    \pagevalues
+
+    % \printinunitsof{in}
+    % \pagevalues
+
+    \newpage
+
+    \AddToShipoutPicture*{\ShowFramePicture}
+    \layout
+
+}
+
+
+%\ifdraftlayout
+    \lfoot{\texttt{\currfilename}}
+    \lhead{\footnotesize \currfileabsdir}
+%\fi
+
