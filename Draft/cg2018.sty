@@ -216,6 +216,14 @@
 \pagestyle{fancy}
 %\pagestyle{headings}
 
+\usepackage{helvet} % =Arial
+\usepackage[helvet]{sfmath} % needed for maths according to Ollie S.
+\renewcommand{\rmdefault}{phv} % =Arial
+\renewcommand{\sfdefault}{phv} % =Arial
+\renewcommand{\familydefault}{\sfdefault}
+\DeclareTextFontCommand{\textttup}{\normalfont\ttfamily}
+% use this to allow underscore printing for filenames
+\usepackage[T1]{fontenc}
 
 
 
