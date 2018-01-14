@@ -51,6 +51,18 @@
 \DeclareOption{debug}{\debuglayouttrue}
 \ProcessOptions\relax
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use this to produce navigation hyperlinks for the pdf. 
+% i.e. table of contents has clickable bookmarks
+% use bookmark addon to which fixes some hyperref bugs
+% http://stackoverflow.com/questions/1483396/how-to-explicitly-end-a-part-in-latex-with-hyperref
+\usepackage{hyperref}
+\usepackage{bookmark,hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue}
+
+
+
 %%Body of the package, most of the declarations appear here.
 
 
@@ -68,13 +80,17 @@
 
 \usepackage{helvet} % =Arial
 \usepackage[helvet]{sfmath} % needed for maths according to Ollie S.
-\renewcommand{\rmdefault}{phv} % =Arial
-\renewcommand{\sfdefault}{phv} % =Arial
+
+%% \renewcommand{\familydefault}{<family>}
+%\renewcommand{\rmdefault}{phv} % =Arial
+%\renewcommand{\sfdefault}{phv} % =Arial
 \renewcommand{\familydefault}{\sfdefault}
-\DeclareTextFontCommand{\textttup}{\normalfont\ttfamily}
+%\DeclareTextFontCommand{\textttup}{\normalfont\ttfamily}
+
+%\renewcommand{\familydefault}{<family>}
 
 % use this to allow underscore printing for filenames
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -207,13 +223,14 @@
     external: \printexternalcurrentfont 
 \hrule
 
-\fontfamily{ptm}\selectfont{
+% Note this next fragment is within {} to ensure font is not changed 
+{\fontfamily{ptm}\selectfont{
 {\bf Times:ptm \newline}
 ABCDEFGHIJKLMNOPQRSTUVWXYZ \hfill\break
 \noindent abcdefghijklmnopqrstuvwxyz \hfill\break
 \noindent The quick brown fox jumps over the lazy dog \hfill\break
 printinternalcurrentfont: \printinternalcurrentfont \hfill\break
-printexternalcurrentfont: \printexternalcurrentfont}
+printexternalcurrentfont: \printexternalcurrentfont}}
 \hrule
 
     \marginpar{A note in the margins.}
