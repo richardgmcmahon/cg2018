@@ -24,7 +24,7 @@
 % \usepackage[< options >]{gitinfo2}
 \usepackage{gitinfo2}
 % gitinfo2 settings
-\renewcommand{\gitMark}{Release: \gitRel}
+\renewcommand{\gitMark}{Release: \gitCommitterIsoDate}
 
 
 
@@ -185,6 +185,29 @@
 % turn off atletter again 
 \makeatother 
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Package: enumitem
+% https://ctan.org/pkg/enumitem
+% control the spacing of a list of items
+% control over the layout of the three basic list environments:
+% enumerate, itemize and description. It supersedes enumerate
+%
+% e.g.
+%\begin{itemize}[nolistsep]
+%\item
+%\item 
+%\end{itemize}
+%
+% 
+%\setlist{nolistsep}Global settings
+%\setlist{listsep}
+%
+%\begin{<list>}[itemsep=4pt,parsep=4pt,topsep=8pt,partopsep=4pt]
+%\begin{<list>}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+\usepackage{enumitem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
