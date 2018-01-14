@@ -21,6 +21,13 @@
 \newcommand{\checkmessage}{\message{Hello World}}
 \checkmessage
 
+% \usepackage[< options >]{gitinfo2}
+\usepackage{gitinfo2}
+% gitinfo2 settings
+\renewcommand{\gitMark}{Release: \gitRel}
+
+
+
 % Needed for Paul Hewett's case
 \usepackage{caption}
 
@@ -39,6 +46,7 @@
 \pagestyle{headings}
 
 
+% used for layout optional checks
 \newif\ifdebuglayout
 \newif\ifdraftlayout
 
@@ -52,6 +60,79 @@
 \ProcessOptions\relax
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change size of section, subsection, subsubsection, paragraph and 
+% subparagraph title fonts and starting text
+%
+% https://tex.stackexchange.com/questions/59726/change-size-of-section-subsection-subsubsection-paragraph-and-subparagraph-ti
+% https://tex.stackexchange.com/questions/99170/starting-text-right-after-section-or-subsection-title
+
+\usepackage{titlesec}
+
+% tikz could be used add shaded box
+%\usepackage{tikz}
+%\usepackage[nobottomtitles*, explicit]{titlesec}
+%
+%\titleformat{\section}[block]
+%  {\Large\bfseries}
+%  {}
+%  {0pt}
+%  {\tikz[overlay]
+%   \shade[(0,-1ex) rectangle (\dimexpr\textwidth+5em,1em);% Set background shaded rectangle
+%   \makebox[5em][l]{\thesection}#1}% Set number + title
+%\titlespacing*{\section}{0pt}{*1}{*1}
+
+%\usepackage[compact]{titlesec}
+%\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
+%\titlespacing*{\section}{0pt}{*0}{0pt}
+% [runin] starts text on same line as title
+\titleformat{\subsection}[runin]{\normalfont\bfseries}{\thesubsection.}{3pt}{}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection.}{3pt}{}
+
+%\usepackage{titletoc}
+%\titlecontents{section}[2.5em]{\medskip\bfseries}%
+%{\contentslabel[\color{blue}Project: \thecontentslabel.]{7em}\enspace}%numbered
+%{\hskip-3em}%numberless
+%{\titlerule*[1.2pc]{.}\contentspage}%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[dvips]{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage{amssym}
+\usepackage{graphicx}
+
+
+%\usepackage{mathabx} % added 2018-01-02 for Ollie S \Earth symbol
+%\usepackage{stmaryrd}
+%\usepackage{times}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure related packages
+\usepackage{wrapfig}
+\usepackage{sidecap}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to load whole pdf pages e.g. Gannt Chart
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use this change section/subsection style figure numbers
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+%\counterwithin{figure}{subsection}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % use this to produce navigation hyperlinks for the pdf. 
 % i.e. table of contents has clickable bookmarks
@@ -62,8 +143,90 @@
 \hypersetup{colorlinks=true, linkcolor=blue}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Making page margins visible
+% https://texblog.org/2011/04/04/make-page-margins-visible
+% \usepackage{showframe}
+% If you only need to show margins for a particular page, use:
+% \usepackage[noframe]{showframe} and at the page:
+% \AddToShipoutPicture*{\ShowFramePicture}
+%
+% The geometry package offers similar functionality:
+% \usepackage[showframe]{geometry} show the frame with lines;
+% [noframe] gives page by page control
+% \usepackage[noframe]{showframe}
+\usepackage[noframe]{showframe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% margin notes
+% \marginpar{A note in the margins.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% turn on atletter so that @ sign can be used in renewcommands definitions
+\makeatletter
+\renewcommand{\@evenfoot}%
+        {\hfil \upshape page {\thepage} of \pageref{LastPage}}
+\renewcommand{\@oddfoot}{\@evenfoot}
+% 2015-01-24 - RGM
+% this fixes a spacing for Figure of the form n.10 in the list of Figures
+% see http://tex.stackexchange.com/questions/63287/not-enough-space-between-figure-number-and-figure-caption-in-list-of-figures
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.0em}}
+% turn off atletter again 
+\makeatother 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% http://tex.stackexchange.com/questions/42417/full-path-of-current-file
+% turn on atletter so that @ sign can be used in renewcommands definitions
+\makeatletter
+\def\fullpath{\begingroup\everyeof{\noexpand}\@sanitize
+  \edef\x{\@@input|"find `pwd` -name \jobname.tex" }%
+  \edef\x{\endgroup\noexpand\zap@space\x\noexpand\@empty}\x}
+% turn off atletter again 
+\makeatother 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{headings}
+
+
+
+
 
 %%Body of the package, most of the declarations appear here.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Configure the header an footer
+%\def\versdate {1.0; 05 June 07}
+\def\versdate {\Now}
+
+\lhead{}
+%\chead{\jobname}
+\rhead{}
+
+%\lfoot{\sf{Reynolds New Applicant 2018\_2021}}
+% you may need to change the font to render _
+% e.g. \texttt is recommended
+%\lfoot{\jobname}
+%\cfoot{\versdate}
+%\chead{\footnotesize \versdate}
+
+
+\cfoot{\footnotesize \versdate}
+\rfoot{\footnotesize page {\thepage} of \pageref{LastPage}}
+
+
+\ifdraftlayout
+    \lfoot{\texttt{\currfilename}}
+    \lhead{\texttt{\currfilename}}
+    \lhead{\footnotesize \currfileabsdir}
+\fi
+
 
 
 
@@ -194,8 +357,8 @@
     \AddToShipoutPicture*{\ShowFramePicture}
 
     \maketitle
-    {\centering\footnotesize Printed at: \now}
-
+    {\centering\footnotesize Printed at: \now:\gitMark}
+    
     %{\centering \fullpath}
     %\centering{\currfiledir}
     %\centering{\currfileabsdir}
@@ -251,9 +414,4 @@ printexternalcurrentfont: \printexternalcurrentfont}}
 
 }
 
-
-%\ifdraftlayout
-    \lfoot{\texttt{\currfilename}}
-    \lhead{\footnotesize \currfileabsdir}
-%\fi
 
