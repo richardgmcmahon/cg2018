@@ -22,10 +22,12 @@
 \checkmessage
 
 % \usepackage[< options >]{gitinfo2}
-\usepackage{gitinfo2}
+% \usepackage{gitinfo2}
+% Default raisemark=1.5\baselineskip]{gitinfo2}
+\usepackage[mark, raisemark=0.25\baselineskip]{gitinfo2}
 % gitinfo2 settings
-\renewcommand{\gitMark}{Release: \gitCommitterIsoDate}
-
+% \renewcommand{\gitMark}{git: \gitCommitterIsoDate}
+% \renewcommand{\gitMark}{\gitAbbrevHash:\gitCommitterIsoDate}
 
 
 % Needed for Paul Hewett's case
