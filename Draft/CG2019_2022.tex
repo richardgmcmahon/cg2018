@@ -1,0 +1,424 @@
+% Changelog
+% 2014-12-12: rgm; This version based on CG 2016-2019 
+
+% 2017-12-19: rgm; tidied up
+% 2017-12-19: rgm;
+
+% usage
+% (1) pdflatex .... or make all
+%
+% (2) Makefile also ....
+%
+% (3) two conditional parameters are available;
+%     ifdebuglayout; ifdraftlayout
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[options]{style}
+%\documentclass[11pt]{article}
+%\documentclass[11pt,titlepage]{article}
+%\documentclass{article}[11pt,twoside,titlepage]
+%\documentclass[11pt,twoside]{article}
+
+% WARNING: This line will will not give an error and will default to 12pt
+%\documentclass{article}[11pt] 
+
+% This is what we are using
+\documentclass[11pt,a4paper]{article}
+
+% IoA CG Latex style file
+% \usepackage{cg2018}
+\usepackage[draft]{cg2018}
+
+
+%\usepackage{amsmath}
+% if you put amssym into package/style file you will get an error
+%\usepackage{amsfonts}
+\usepackage{amssym}
+%\usepackage{amsmath}
+%\usepackage{amslatex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This bit is from GPE in 2012
+ \def\hmpc{h^{-1}{\rm Mpc}}
+ \def\kmpspm{{\rm km}\;{\rm s}^{-1}{\rm Mpc}^{-1}}
+ \def\etal{\it et al. \rm}
+ \def\etals{\it et al.\ \rm}
+ % produces <~ or >~ signs
+ \def\spose#1{\hbox to 0pt{#1\hss}}
+ \def\simlt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+      \raise 2.0pt\hbox{$\mathchar"13C$}}}
+ \def\simgt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+      \raise 2.0pt\hbox{$\mathchar"13E$}}}
+ \def\refx{\parskip=0pt\par\noindent\hangindent\parindent
+     \parskip=2ex plus 0.5ex minus 0.1ex}
+\def\refindent{\par\noindent\hangindent=3pc\hangafter=1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \kms {\rm \,km\,s$^{-1}$}
+\def\sun{\hbox{$\odot$}}
+\def\la{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$<$}}}}
+\def\ga{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$>$}}}}
+%%\input /usr/local/GChtml2latex/html2latex
+
+\def\Earth{\hbox{$\bigoplus$}} % added 2017-01-03
+\def\earth{\hbox{$\oplus$}} % added 2017-01-03
+\def\ergps{\hbox{$\erg\s^{-1}\,$}}
+\def\ergpMpc{\hbox{$\erg\Mpc^{-1}\,$}}
+\def\ergpspmp{\hbox{$\erg\s^{-1}\Mpc^{-3}\,$}}
+\def\gpcm{\hbox{$\g\cm^{-3}\,$}}
+\def\gpcmps{\hbox{$\g\cm^{-3}\s^{-1}\,$}}
+\def\gps{\hbox{$\g\s^{-1}\,$}} \def\Jy{{\rm Jy}}
+\def\keVpcmsqpspsr{\hbox{$\keV\cm^{-2}\s^{-1}\sr^{-1}\,$}}
+\def\kmps{\hbox{$\km\s^{-1}\,$}}
+\def\kmpspmp{\hbox{$\km\s^{-1}\Mpc{-1}\,$}}
+\def\Lsunppc{\hbox{$\Lsun\pc^{-3}\,$}}
+\def\Msunpc{\hbox{$\Msun\pc^{-3}\,$}}
+\def\Msunpkpc{\hbox{$\Msun\kpc^{-1}\,$}}
+\def\Msunppc{\hbox{$\Msun\pc^{-3}\,$}}
+\def\Msunppcpyr{\hbox{$\Msun\pc^{-3}\yr^{-1}\,$}}
+\def\Msunpyr{\hbox{$\Msun\yr^{-1}\,$}} \def\pcm{\hbox{$\cm^{-3}\,$}}
+
+% new def from ESO style file
+\def\arcsec{\hbox{$^{\prime\prime}$}}
+
+\newcommand{\ion}[2]{\ifmmode 
+ \mbox{\rm #1\,{\small\uppercase\expandafter{\romannumeral #2}}}
+ \else\mbox{#1\,{\small\uppercase\expandafter{\romannumeral #2}}}\fi}
+
+%\newcommand{\kms}{{\rm km~s$^{-1}$}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%This also works:
+%\begin{itemize}
+% \setlength\itemsep{0pt}\setlength\parsep{0pt}\setlength\parskip{0pt}
+%\item Item1
+%\item Item2
+%\item Item3
+%\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% todo notes
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mysubsection}[1]
+  {\subsection{\colorbox{Gray}{\makebox[\hfill][l]{#1}}}}
+
+\newcommand{\mysection}[1]
+  {\section{\colorbox{Gray}{\makebox[\hfill][l]{#1}}}}
+
+
+  
+% \author{}
+
+\title{Consolidated Grant 2019-2022 Working Draft}
+
+
+
+\begin{document}
+
+
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdraftlayout
+    \layoutpagecheck
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\medskip
+
+%\newcommand{\someSpecialText}{A text that can be changed locally\ldots}
+%\newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
+
+%\testIt
+
+\newpage
+\clearpage
+
+\ifdebuglayout
+
+  %\input{CG2016_2019_layout_checks.tex}
+
+   \newpage
+
+  \setcounter{section}{2}
+  \section{Science cases examples}
+  %\setcounter{tocdepth}{2}
+  %\tableofcontents
+  \newpage
+
+  \setcounter{figure}{0}
+
+  %\part{Example Theme : Example cases}
+
+  % Example
+  %\AddToShipoutPicture*{\ShowFramePicture}
+  %\input{CG2016_2019_example_v1.tex}
+  \newpage
+
+  %\input{CG2016_2019_Figures_References_v1.tex}
+  \newpage
+
+  %\end{document}
+
+  %\input{CG2016_2019_example_v3.tex}
+  \newpage
+
+  \newcommand{\someSpecialText}{A text that can be changed locally\ldots}
+  \newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
+
+  \testIt
+
+
+  \newpage
+
+
+  % Example
+  %\input{CG2016_2019_template_case_v2.tex}
+  \newpage
+
+
+  %\renewcommand\thesection{\roman{section}}
+
+  %\input{README.tex}
+  %\newpage
+
+
+  %\input{CG2016_2019_Notes.tex}
+  %\newpage
+
+  %\end{document}
+
+  \input{STFC_GuidelinesNotes2017.tex}
+  \newpage
+
+
+\fi
+
+
+%\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
+%\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
+\newpage
+
+
+
+\setcounter{tocdepth}{3}
+\ifdebuglayout
+  \setcounter{tocdepth}{3}
+\fi
+
+%do not \clearpage if you want to bookmark the Contents
+%\pdfbookmark{\contentsname}{Contents}
+%\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+\newpage
+
+\ifdraftlayout
+    This list of figures is only for the draft checking of figures numbers and figure captions
+    
+    \listoffigures
+    \newpage
+    
+    This list of figures is only for the draft checking
+    
+    \listoftables
+    \newpage
+    
+Science cases start here
+
+Could change the page numbering and sectioning to make the
+projects have a numbering from 1 to n; or x.1 to x.n
+
+\newpage
+
+\input{CG2019_2022_Notes.tex}
+\newpage
+
+\fi
+
+\pagenumbering{roman}
+
+% In order to have the science cases numbered 1 to n; no numbering is used to
+% for the Introduction and Resources
+% To add them to the toc \addcontentsline is used
+
+% add toc line but use \section*{} to avoid section numbering
+\addcontentsline{toc}{section}{Introduction [still heavily based on 2016\_2019]}
+\input{CG2019_2022_Intro_v1.tex}
+\newpage
+
+\addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
+\input{CG2019_2022_Resources_v1.tex}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        1         2         3         4         5         6         7         8
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{figure}{0}
+\setcounter{section}{0}
+
+\pagenumbering{arabic}
+\renewcommand\thesection{\arabic{section}}
+
+% Add toc line for Science cases
+\addcontentsline{toc}{section}{Science cases [subsections shown for drafting]}
+%\part{Theme : CMB}
+\input{CG2019_2022_Challinor_case_v1.tex}
+\newpage
+
+%\part{Theme : Numerical Cosmology}
+\label{subsec:case_Haehnelt}
+%\input{cg19_haehnelt22Dec17_v2.tex}
+\input{cg19_haehnelt3Jan18_v3.tex}
+\newpage
+
+\label{subsec:case_Sijacki}
+%\input{CG2019_2022_Sijacki_v1.tex}
+% changed the figure names
+%\input{CG2019_2022_Sijacki_v1_rgm_v1.tex}
+\input{CG2019_2022_Sijacki_v2.tex}
+\newpage
+
+
+
+%\part{Theme : High Energy Astrophysics}
+\label{subsec:case_Reynolds}
+\input{CG2019_2022_Reynolds_case_v2.tex}
+\newpage
+
+
+%
+\label{subsec:case_Madhu}
+\input{CG2019_2022_template_case_v1_nm.tex}
+\newpage
+
+\label{subsec:case_Shorttle}
+\input{CG2019_2022_shorttlev2.tex}
+\newpage
+
+
+%
+\label{subsec:case_Clarke}
+% \input{ClarkeTazzari2.tex}
+\input{ClarkeTazzari3.tex}
+\newpage
+
+%
+\label{subsec:case_Wyatt}
+\input{wyattekb.tex}
+\newpage
+
+% 
+\label{subsec:case_Tout}
+\input{CG2019_2022_tout.tex}
+\newpage
+
+\label{subsec:case_Belokurov1}
+\input{CG2019_2022_halo_gaiaweave.tex}
+\newpage
+
+
+\label{subsec:case_Belokurov2}
+\input{CG2019_2022_magellanic.tex}
+
+\label{subsec:case_Evans1}
+\input{Evans_case1.tex}
+\newpage
+
+\label{subsec:case_Evans2}
+\input{Evans_case2.tex}
+\newpage
+
+
+\newpage
+
+\label{subsec:case_Gilmore}
+\input{CG2019_2022_template_case_v1_GG.tex}
+\newpage
+
+\label{subsec:case_GaiaAlerts}
+\input{CG2019_2022_GaiaAlerts_v1.tex}
+\newpage
+
+
+
+\label{subsec:case_Mandel}
+% \input{CG2019_2022_kmandel_case_v1.tex}
+\input{CG2019_2022_kmandel_case_v2.tex}
+\newpage
+
+%\part{Theme: Theme 2}
+\label{subsec:case_Banerji}
+%\input{CG2019_2022_template_case_mbanerji_v1.tex}
+\input{CG2019_2022_case_mbanerji_v2.tex}
+\newpage
+
+%\part{Theme: Theme 2}
+\label{subsec:case_Hewett}
+%\input{CG2019_2022_Hewett_v1.tex}
+\input{hewett_cg_v2.tex}
+\newpage
+
+%% EoR and quasars
+%\part{Theme: Theme 2}
+\label{subsec:case_McMahon}
+\input{CG2019_2022_McMahon_v1.tex}
+\newpage
+
+
+%% EoR and quasars
+%\part{Theme: Theme 2}
+\label{subsec:case_Parry}
+\input{parry_v1.tex}
+\newpage
+
+
+\appendix
+\addcontentsline{toc}{section}{Appendices}
+\includepdf[pages={1}, offset=0.0cm 0.0cm,
+  pagecommand=\section{A Publication Table}]
+           {ConsolGrant_Pubs_2018-2NEWDATA.pdf}  
+\includepdf[pages={1}, offset=0.0cm 0.0cm,
+  pagecommand=\section{A Publication Table}]
+           {CG2019_2022_PublicationsTablev1.pdf}
+\addcontentsline{toc}{subsection}{A Publication Table}
+\addcontentsline{toc}{subsection}{B Resources Requested Summary Table}
+\addcontentsline{toc}{subsection}{C GANNT Chart}
+\addcontentsline{toc}{subsection}{D Summary table of existing support}
+\addcontentsline{toc}{subsection}{E Abstracts of related support grants}
+
+
+\appendix
+\setcounter{section}{5}
+\setcounter{subsection}{5}
+\input{CG2019_2022_DataManagementPlan_v1.tex}
+\newpage
+
+\input{CG2019_2022_PathwaysImpact_v1.tex}
+\newpage
+
+
+\ifdraftlayout
+    \layoutpagecheck
+\fi
+
+\end{document}
+
