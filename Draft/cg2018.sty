@@ -237,6 +237,14 @@
 \usepackage[T1]{fontenc}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add linenumbers in margin; useful for draft
+% \usepackage{lineno} % Continuously number the lines
+\usepackage[pagewise]{lineno} % Number the lines from 1 on each page.
+\ifdraftlayout
+    \linenumbers % turn on line numbers
+\fi
+
 
 
 %%Body of the package, most of the declarations appear here.
