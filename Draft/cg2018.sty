@@ -21,33 +21,6 @@
 \newcommand{\checkmessage}{\message{Hello World}}
 \checkmessage
 
-% \usepackage[< options >]{gitinfo2}
-% \usepackage{gitinfo2}
-% Default raisemark=1.5\baselineskip]{gitinfo2}
-\usepackage[mark, raisemark=0.25\baselineskip]{gitinfo2}
-
-% gitinfo2 settings
-% \renewcommand{\gitMark}{git: \gitCommitterIsoDate}
-% \renewcommand{\gitMark}{\gitAbbrevHash:\gitCommitterIsoDate}
-
-
-% Needed for Paul Hewett's case
-\usepackage{caption}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{currfile}
-% \usepackage{currfile}
-% \usepackage{currfile, abspath}
-% \usepackage{currfile-abspath}
-\usepackage[abspath]{currfile}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{lastpage}
-\usepackage{fancyhdr}
-%\pagestyle{fancy}
-\pagestyle{headings}
-
 
 % https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
 % used for layout optional checks
@@ -64,6 +37,42 @@
 \DeclareOption{cgdebug}{\cgdebugtrue}
 \DeclareOption{cgfullproposal}{\cgfullproposal}
 \ProcessOptions\relax
+
+
+% \usepackage[< options >]{gitinfo2}
+% \usepackage{gitinfo2}
+% Default raisemark=1.5\baselineskip]{gitinfo2}
+
+\ifcgdraft
+  \usepackage[mark, raisemark=0.25\baselineskip]{gitinfo2}
+
+  % gitinfo2 settings
+  % \renewcommand{\gitMark}{git: \gitCommitterIsoDate}
+  % \renewcommand{\gitMark}{\gitAbbrevHash:\gitCommitterIsoDate}
+  
+\fi
+
+
+
+% Needed for Paul Hewett's case
+\usepackage{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage{currfile}
+% \usepackage{currfile}
+% \usepackage{currfile, abspath}
+% \usepackage{currfile-abspath}
+\usepackage[abspath]{currfile}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{headings}
+
+\usepackage{lastpage}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -479,7 +488,3 @@ printexternalcurrentfont: \printexternalcurrentfont}}
     \layout
 
 }
-
-%\ifdraftlayout
-%    \linenumbers % turn on line numbers
-%\fi
