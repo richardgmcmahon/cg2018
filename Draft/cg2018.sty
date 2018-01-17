@@ -48,9 +48,11 @@
 \pagestyle{headings}
 
 
+% https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
 % used for layout optional checks
 \newif\ifdebuglayout
 \newif\ifdraftlayout
+\newif\iffullproposal
 
 %%This parts handles the options passed to the package.
 
@@ -60,8 +62,6 @@
 \DeclareOption{draft}{\draftlayouttrue}
 \DeclareOption{debug}{\debuglayouttrue}
 \ProcessOptions\relax
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -246,10 +246,6 @@
 \fi
 
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % todo notes
 \usepackage[colorinlistoftodos]{todonotes}
@@ -257,7 +253,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\mysubsection}[1]
+\newcommand{\mysusection}[1]
   {\subsection{\colorbox{Gray}{\makebox[\hfill][l]{#1}}}}
 
 \newcommand{\mysection}[1]
@@ -420,7 +416,6 @@
 \def\@Now{\today\ \now}
 
 
-
 \newcommand{\layoutpagecheck}
 {
     \AddToShipoutPicture*{\ShowFramePicture}
@@ -483,4 +478,6 @@ printexternalcurrentfont: \printexternalcurrentfont}}
 
 }
 
-
+%\ifdraftlayout
+%    \linenumbers % turn on line numbers
+%\fi

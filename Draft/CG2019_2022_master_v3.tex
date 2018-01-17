@@ -31,8 +31,24 @@
 
 
 % IoA CG Latex style file
-% \usepackage{cg2018}
-\usepackage[draft]{cg2018}
+\usepackage{cg2018}
+%\usepackage[draft]{cg2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% turn on draft checks
+% \draftlayoutfalse
+% \draftlayouttrue
+\ifdraftlayout
+    \layoutpagecheck
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% turn on to process supporting materials
+% \fullproposaltrue
+
+
+
+
 
 % to view package documentation: texdoc -l <package>
 % e.g. texdoc -l amsmath
@@ -120,13 +136,6 @@
 % this might be changed
 \pagenumbering{arabic}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% turn on draft checks
-\draftlayouttrue
-\ifdraftlayout
-    \layoutpagecheck
-\fi
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\medskip
 %\newcommand{\someSpecialText}{A text that can be changed locally\ldots}
@@ -198,10 +207,11 @@
 \fi
 
 
+\iffullproposal
 %\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
 %\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
 \newpage
-
+\fi
 
 
 \setcounter{tocdepth}{3}
@@ -225,6 +235,7 @@
     
     \listoftables
     \newpage
+
     
 Science cases start here
 
@@ -233,15 +244,18 @@ projects have a numbering from 1 to n; or x.1 to x.n
 
 \newpage
 
-\input{CG2019_2022_Notes.tex}
-\newpage
+\fi
 
+\iffullproposal
+    \input{CG2019_2022_Notes.tex}
+     \newpage
 \fi
 
 % start the proposal here
 
 \pagenumbering{roman}
 
+\iffullproposal
 % In order to have the science cases numbered 1 to n; no numbering is used to
 % for the Introduction and Resources
 % To add them to the toc \addcontentsline is used
@@ -251,9 +265,12 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \input{CG2019_2022_Intro_v1.tex}
 \newpage
 
+
 \addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
 \input{CG2019_2022_Resources_v1.tex}
 \newpage
+
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        1         2         3         4         5         6         7         8
@@ -268,15 +285,7 @@ projects have a numbering from 1 to n; or x.1 to x.n
 
 % Add toc line for Science cases
 \addcontentsline{toc}{section}{Science cases [subsections shown for drafting]}
-%\part{Theme : CMB}
-\input{CG2019_2022_Challinor_case_v1.tex}
-\newpage
 
-%\part{Theme : Numerical Cosmology}
-\label{subsec:case_Haehnelt}
-%\input{cg19_haehnelt22Dec17_v2.tex}
-\input{cg19_haehnelt3Jan18_v3.tex}
-\newpage
 
 \label{subsec:case_Sijacki}
 %\input{CG2019_2022_Sijacki_v1.tex}
@@ -285,128 +294,4 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \input{CG2019_2022_Sijacki_v2.tex}
 \newpage
 
-
-
-%\part{Theme : High Energy Astrophysics}
-\label{subsec:case_Reynolds}
-\input{CG2019_2022_Reynolds_case_v2.tex}
-\newpage
-
-
-%
-\label{subsec:case_Madhu}
-\input{CG2019_2022_template_case_v1_nm.tex}
-\newpage
-
-\label{subsec:case_Shorttle}
-\input{CG2019_2022_shorttlev2.tex}
-\newpage
-
-
-%
-\label{subsec:case_Clarke}
-% \input{ClarkeTazzari2.tex}
-\input{ClarkeTazzari3.tex}
-\newpage
-
-%
-\label{subsec:case_Wyatt}
-\input{wyattekb.tex}
-\newpage
-
-% 
-\label{subsec:case_Tout}
-\input{CG2019_2022_tout.tex}
-\newpage
-
-\label{subsec:case_Belokurov1}
-\input{CG2019_2022_halo_gaiaweave.tex}
-\newpage
-
-
-\label{subsec:case_Belokurov2}
-\input{CG2019_2022_magellanic.tex}
-
-\label{subsec:case_Evans1}
-\input{Evans_case1.tex}
-\newpage
-
-\label{subsec:case_Evans2}
-\input{Evans_case2.tex}
-\newpage
-
-
-\newpage
-
-\label{subsec:case_Gilmore}
-\input{CG2019_2022_template_case_v1_GG.tex}
-\newpage
-
-\label{subsec:case_GaiaAlerts}
-\input{CG2019_2022_GaiaAlerts_v1.tex}
-\newpage
-
-
-
-\label{subsec:case_Mandel}
-% \input{CG2019_2022_kmandel_case_v1.tex}
-\input{CG2019_2022_kmandel_case_v2.tex}
-\newpage
-
-%\part{Theme: Theme 2}
-\label{subsec:case_Banerji}
-%\input{CG2019_2022_template_case_mbanerji_v1.tex}
-\input{CG2019_2022_case_mbanerji_v2.tex}
-\newpage
-
-%\part{Theme: Theme 2}
-\label{subsec:case_Hewett}
-%\input{CG2019_2022_Hewett_v1.tex}
-\input{hewett_cg_v2.tex}
-\newpage
-
-%% EoR and quasars
-%\part{Theme: Theme 2}
-\label{subsec:case_McMahon}
-\input{CG2019_2022_McMahon_v1.tex}
-\newpage
-
-
-%% EoR and quasars
-%\part{Theme: Theme 2}
-\label{subsec:case_Parry}
-\input{parry_v1.tex}
-\newpage
-
-
-\appendix
-\addcontentsline{toc}{section}{Appendices}
-\includepdf[pages={1}, offset=0.0cm 0.0cm,
-  pagecommand=\section{A Publication Table}]
-           {ConsolGrant_Pubs_2018-2NEWDATA.pdf}  
-\includepdf[pages={1}, offset=0.0cm 0.0cm,
-  pagecommand=\section{A Publication Table}]
-           {CG2019_2022_PublicationsTablev1.pdf}
-\addcontentsline{toc}{subsection}{A Publication Table}
-\addcontentsline{toc}{subsection}{B Resources Requested Summary Table}
-\addcontentsline{toc}{subsection}{C GANNT Chart}
-\addcontentsline{toc}{subsection}{D Summary table of existing support}
-\addcontentsline{toc}{subsection}{E Abstracts of related support grants}
-
-
-\appendix
-\setcounter{section}{5}
-\setcounter{subsection}{5}
-\input{CG2019_2022_DataManagementPlan_v1.tex}
-\newpage
-
-\input{CG2019_2022_PathwaysImpact_v1.tex}
-\newpage
-
-
-\ifdraftlayout
-    \layoutpagecheck
-\fi
-
 \end{document}
-
