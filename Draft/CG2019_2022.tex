@@ -122,10 +122,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % turn on draft checks
-\draftlayouttrue
-\ifdraftlayout
-    \layoutpagecheck
-\fi
+%\cgdraft
+%\ifdraftlayout
+%    \layoutpagecheck
+%\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\medskip
@@ -137,7 +137,7 @@
 \newpage
 \clearpage
 
-\ifdebuglayout
+\ifcgdebug
 
   %\input{CG2016_2019_layout_checks.tex}
 
@@ -204,8 +204,8 @@
 
 
 
-\setcounter{tocdepth}{3}
-\ifdebuglayout
+\setcounter{tocdepth}{2}
+\ifcgdebug
   \setcounter{tocdepth}{3}
 \fi
 
@@ -215,7 +215,7 @@
 \tableofcontents
 \newpage
 
-\ifdraftlayout
+\ifcgdraft
     This list of figures is only for the draft checking of figures numbers and figure captions
     
     \listoffigures
@@ -404,7 +404,7 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \newpage
 
 
-\ifdraftlayout
+\ifcgdraft
     \layoutpagecheck
 \fi
 

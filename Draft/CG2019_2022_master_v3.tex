@@ -10,7 +10,7 @@
 % (2) make clean might be needed
 %
 % (3) two conditional parameters are available;
-%     ifdebuglayout; ifdraftlayout
+%     ifdebug; ifdraft
 %
 
 
@@ -21,24 +21,30 @@
 % \documentclass[11pt,titlepage]{article}
 % \documentclass{article}[11pt,twoside,titlepage]
 % \documentclass[11pt,twoside]{article}
-
-% This is what we are using
-\documentclass[11pt,a4paper]{article}
-
 % WARNING: This wrongly formatted line will will not give an error and
 % will default to 12pt
 %\documentclass{article}[11pt] 
 
 
+% This is what we are using
+\documentclass[11pt,a4paper]{article}
+
+
 % IoA CG Latex style file
+% fullproposal will include the intro, resources and other files
+% draft will add show some layout information
+% debug is not implemented
+%\usepackage[cgdraft, cgdebug, cgfullproposal]{cg2018}
+
+% use \usepackage{cg2018} for a single case
 \usepackage{cg2018}
-%\usepackage[draft]{cg2018}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % turn on draft checks
 % \draftlayoutfalse
 % \draftlayouttrue
-\ifdraftlayout
+\ifcgdraft
     \layoutpagecheck
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,79 +149,10 @@
 
 %\testIt
 
-\newpage
-\clearpage
-
-\ifdebuglayout
-
-  %\input{CG2016_2019_layout_checks.tex}
-
-   \newpage
-
-  \setcounter{section}{2}
-  \section{Science cases examples}
-  %\setcounter{tocdepth}{2}
-  %\tableofcontents
-  \newpage
-
-  \setcounter{figure}{0}
-
-  %\part{Example Theme : Example cases}
-
-  % Example
-  %\AddToShipoutPicture*{\ShowFramePicture}
-  %\input{CG2016_2019_example_v1.tex}
-  \newpage
-
-  %\input{CG2016_2019_Figures_References_v1.tex}
-  \newpage
-
-  %\end{document}
-
-  %\input{CG2016_2019_example_v3.tex}
-  \newpage
-
-  \newcommand{\someSpecialText}{A text that can be changed locally\ldots}
-  \newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
-
-  \testIt
-
-
-  \newpage
-
-
-  % Example
-  %\input{CG2016_2019_template_case_v2.tex}
-  \newpage
-
-
-  %\renewcommand\thesection{\roman{section}}
-
-  %\input{README.tex}
-  %\newpage
-
-
-  %\input{CG2016_2019_Notes.tex}
-  %\newpage
-
-  %\end{document}
-
-  \input{STFC_GuidelinesNotes2017.tex}
-  \newpage
-
-
-\fi
-
-
-\iffullproposal
-%\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
-%\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
-\newpage
-\fi
-
-
+% adjust this
 \setcounter{tocdepth}{3}
-\ifdebuglayout
+
+\ifcgdebug
   \setcounter{tocdepth}{3}
 \fi
 
@@ -225,7 +162,7 @@
 \tableofcontents
 \newpage
 
-\ifdraftlayout
+\ifcgdraft
     This list of figures is only for the draft checking of figures numbers and figure captions
     
     \listoffigures
@@ -236,39 +173,33 @@
     \listoftables
     \newpage
 
-    
-Science cases start here
-
-Could change the page numbering and sectioning to make the
-projects have a numbering from 1 to n; or x.1 to x.n
-
-\newpage
-
 \fi
 
-\iffullproposal
+\ifcgdraft
     \input{CG2019_2022_Notes.tex}
-     \newpage
+    \newpage
 \fi
 
 % start the proposal here
+% Science cases start here
+% Could change the page numbering and sectioning to make the
+% projects have a numbering from 1 to n; or x.1 to x.n
+
 
 \pagenumbering{roman}
-
-\iffullproposal
 % In order to have the science cases numbered 1 to n; no numbering is used to
 % for the Introduction and Resources
 % To add them to the toc \addcontentsline is used
 
-% add toc line but use \section*{} to avoid section numbering
-\addcontentsline{toc}{section}{Introduction [still heavily based on 2016\_2019]}
-\input{CG2019_2022_Intro_v1.tex}
-\newpage
+\ifcgfullproposal
+  % add toc line but use \section*{} to avoid section numbering
+  \addcontentsline{toc}{section}{Introduction [still heavily based on 2016\_2019]}
+  \input{CG2019_2022_Intro_v1.tex}
+  \newpage
 
-
-\addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
-\input{CG2019_2022_Resources_v1.tex}
-\newpage
+  \addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
+  \input{CG2019_2022_Resources_v1.tex}
+  \newpage
 
 \fi
 

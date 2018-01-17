@@ -25,6 +25,7 @@
 % \usepackage{gitinfo2}
 % Default raisemark=1.5\baselineskip]{gitinfo2}
 \usepackage[mark, raisemark=0.25\baselineskip]{gitinfo2}
+
 % gitinfo2 settings
 % \renewcommand{\gitMark}{git: \gitCommitterIsoDate}
 % \renewcommand{\gitMark}{\gitAbbrevHash:\gitCommitterIsoDate}
@@ -50,17 +51,18 @@
 
 % https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
 % used for layout optional checks
-\newif\ifdebuglayout
-\newif\ifdraftlayout
-\newif\iffullproposal
+\newif\ifcgdebug
+\newif\ifcgdraft
+\newif\ifcgfullproposal
 
 %%This parts handles the options passed to the package.
 
 % examples
 \DeclareOption*{\PackageWarning{cg2018}{Unknown ‘\CurrentOption’}}
 %
-\DeclareOption{draft}{\draftlayouttrue}
-\DeclareOption{debug}{\debuglayouttrue}
+\DeclareOption{cgdraft}{\cgdrafttrue}
+\DeclareOption{cgdebug}{\cgdebugtrue}
+\DeclareOption{cgfullproposal}{\cgfullproposal}
 \ProcessOptions\relax
 
 
@@ -241,7 +243,7 @@
 % add linenumbers in margin; useful for draft
 % \usepackage{lineno} % Continuously number the lines
 \usepackage[pagewise]{lineno} % Number the lines from 1 on each page.
-\ifdraftlayout
+\ifcgdraft
     \linenumbers % turn on line numbers
 \fi
 
@@ -286,7 +288,7 @@
 \rfoot{\footnotesize page {\thepage} of \pageref{LastPage}}
 
 
-\ifdraftlayout
+\ifcgdraft
     \lfoot{\texttt{\currfilename}}
     \lhead{\texttt{\currfilename}}
     \lhead{\footnotesize \currfileabsdir}
