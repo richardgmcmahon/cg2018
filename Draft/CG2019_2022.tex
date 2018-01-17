@@ -32,7 +32,7 @@
 
 % IoA CG Latex style file
 % \usepackage{cg2018}
-\usepackage[draft]{cg2018}
+\usepackage[cgdraft]{cg2018}
 
 % to view package documentation: texdoc -l <package>
 % e.g. texdoc -l amsmath
@@ -121,11 +121,10 @@
 \pagenumbering{arabic}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% turn on draft checks
-%\cgdraft
-%\ifdraftlayout
-%    \layoutpagecheck
-%\fi
+% draft layout checks
+\ifcgdraft
+    \layoutpagecheck
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\medskip
@@ -171,14 +170,12 @@
 
   \testIt
 
-
   \newpage
 
 
   % Example
   %\input{CG2016_2019_template_case_v2.tex}
   \newpage
-
 
   %\renewcommand\thesection{\roman{section}}
 
@@ -193,7 +190,6 @@
 
   \input{STFC_GuidelinesNotes2017.tex}
   \newpage
-
 
 \fi
 
