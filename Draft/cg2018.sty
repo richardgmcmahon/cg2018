@@ -16,12 +16,15 @@
 %% Stop immediately if we are not using PDF
 %%-----------------------------------------
 
+
+% TODO
+
+% document layout and layouts
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cg2018}[IoA STFC Consolidated Grant 2018]
 \newcommand{\checkmessage}{\message{Hello World}}
 \checkmessage
-
-
 
 
 % https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
@@ -41,7 +44,6 @@
 \DeclareOption{cgnofigures}{\cgnofigurestrue}
 \DeclareOption{cgfullproposal}{\cgfullproposaltrue}
 \ProcessOptions\relax
-
 
 % \usepackage[< options >]{gitinfo2}
 % \usepackage{gitinfo2}
@@ -201,6 +203,7 @@
 % The package layout defines a command \layout, which will show a summary
 % of the layout of the current document.
 \usepackage{layout} % creates a graph of the page layout
+
 \usepackage{layouts} % has the \pagevalues command for printing layout
 
 
