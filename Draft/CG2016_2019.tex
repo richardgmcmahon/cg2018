@@ -1,0 +1,621 @@
+% Changelog
+% 2014-12-12
+% This version based on CG 2016-2019 
+% Margins from GPE
+
+
+% 2015-01-24
+% commented out psfig since we will be using pdflatex and png/pdf figures
+% added subsection Figure numbering and fixed the resultane list of figure formatting
+
+%http://tex.stackexchange.com/questions/5894/latex-conditional-expression
+
+\newif\ifdebuglayout
+\debuglayoutfalse
+%\debuglayouttrue
+
+%http://www.howtotex.com/tips-tricks/two-sided-latex-page-margins/
+% default articale has different margins on odd/even pages
+% to get symmetric
+%\setlength{\oddsidemargin}{5mm}
+%\setlength{\evensidemargin}{5mm}
+% or use
+%\usepackage[hmarginratio=1:1]{geometry}
+
+%\documentclass [options] {style}
+%\documentclass[11pt]{article}
+\documentclass[11pt,a4paper]{article}
+%\documentclass[11pt,twoside]{article}
+%\usepackage[hmarginratio=1:1]{geometry}
+
+
+% This will not give an error and will give 12pt and no error
+%\documentclass{article}[11pt] 
+
+%\documentclass[11pt,titlepage]{article}
+%\documentclass{article}[11pt,twoside,titlepage]
+
+% \textheight 670pt
+% \textwidth 460pt
+% \topmargin -1cm
+% \oddsidemargin -.5mm
+
+\textwidth=17cm
+
+%GPE
+%\textheight=26.2cm
+%\topmargin=-3.5cm
+
+%RGM
+\textheight=26.0cm
+\topmargin=-2.5cm
+%\topmargin=-3.0cm
+\oddsidemargin=-0.5cm
+\parskip=0.15cm
+\parindent=0pt
+
+%\textheight=25.2cm
+%\topmargin=-2.0cm
+
+
+
+
+\usepackage{titlesec}
+%\usepackage[compact]{titlesec}
+%\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
+%\titlespacing*{\section}{0pt}{*0}{0pt}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection.}{3pt}{}
+
+ %\usepackage[dvips]{color}
+ \usepackage{multicol}
+ %\usepackage{psfig}
+ \usepackage{amssymb}
+ \usepackage{latexsym}
+ \usepackage{amsmath}
+ \usepackage{amssym}
+ \usepackage{graphicx}
+ \usepackage{times}
+ \usepackage{wrapfig}
+
+% package to load whole pdf pages
+\usepackage{pdfpages}
+
+% use this get section/subsection figure numbers
+\usepackage{chngcntr}
+
+% use this to have two independent table of contents
+\usepackage{titletoc}
+
+% layout details
+\usepackage{layout}
+\usepackage{layouts}
+
+% Making page margins visible
+% show the frame with lines; [noframe] gives page by page control
+\usepackage[noframe]{showframe}
+
+
+% use this to produce navigation hyperlinks for the pdf. TOC is clickable
+% use bookmark addon to which fixes some hyperref bugs
+% http://stackoverflow.com/questions/1483396/how-to-explicitly-end-a-part-in-latex-with-hyperref
+\usepackage{hyperref}
+\usepackage{bookmark,hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue}
+
+
+% turn on atletter so that @ sign can be used in renewcommans definitions
+\makeatletter
+
+\renewcommand{\@evenfoot}%
+        {\hfil \upshape page {\thepage} of \pageref{LastPage}}
+\renewcommand{\@oddfoot}{\@evenfoot}
+
+% 2015-01-24 - RGM
+% this fixes a spacing for Figure of the form n.10 in the list of Figures
+% see http://tex.stackexchange.com/questions/63287/not-enough-space-between-figure-number-and-figure-caption-in-list-of-figures
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.0em}}
+% turn off atletter again 
+\makeatother 
+
+% http://tex.stackexchange.com/questions/42417/full-path-of-current-file
+% turn on atletter so that @ sign can be used in renewcommans definitions
+\makeatletter
+\def\fullpath{\begingroup\everyeof{\noexpand}\@sanitize
+  \edef\x{\@@input|"find `pwd` -name \jobname.tex" }%
+  \edef\x{\endgroup\noexpand\zap@space\x\noexpand\@empty}\x}
+% turn off atletter again 
+\makeatother 
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{headings}
+
+
+% timestamp info
+%       Current time; this may be system dependent!
+\newcount\hours
+ \newcount\minutes
+  \def\SetTime{\hours=\time
+         \global\divide\hours by 60
+         \minutes=\hours
+         \multiply\minutes by 60
+         \advance\minutes by-\time
+         \global\multiply\minutes by-1 }
+\SetTime
+\def\now{\number\hours:\ifnum\minutes<10 0\fi\number\minutes}
+% These do not quite work in Latex using \write
+\def\Now{\today\ \now}
+\def\@Now{\today\ \now}
+
+
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%% This bit is from GPE
+ \def \hmpc{h^{-1}{\rm Mpc}}
+ \def \kmpspm{{\rm km}\;{\rm s}^{-1}{\rm Mpc}^{-1}}
+ \def\etal{\it et al. \rm}
+ \def\etals{\it et al.\ \rm}
+ % produces <~ or >~ signs
+ \def\spose#1{\hbox to 0pt{#1\hss}}
+ \def\simlt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+      \raise 2.0pt\hbox{$\mathchar"13C$}}}
+ \def\simgt{\mathrel{\spose{\lower 3pt\hbox{$\mathchar"218$}}
+      \raise 2.0pt\hbox{$\mathchar"13E$}}}
+ \def\refx{\parskip=0pt\par\noindent\hangindent\parindent
+     \parskip=2ex plus 0.5ex minus 0.1ex}
+\def\refindent{\par\noindent\hangindent=3pc\hangafter=1}
+ % setup character size, and page format
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \kms {\rm \,km\,s$^{-1}$}
+ \def\sun{\hbox{$\odot$}}
+ \def\la{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$<$}}}}
+ \def\ga{\mathrel{\hbox{\rlap{\hbox{\lower4pt\hbox{$\sim$}}}\hbox{$>$}}}}
+ %%\input /usr/local/GChtml2latex/html2latex
+
+\def\ergps{\hbox{$\erg\s^{-1}\,$}}
+\def\ergpMpc{\hbox{$\erg\Mpc^{-1}\,$}}
+\def\ergpspmp{\hbox{$\erg\s^{-1}\Mpc^{-3}\,$}}
+\def\gpcm{\hbox{$\g\cm^{-3}\,$}}
+\def\gpcmps{\hbox{$\g\cm^{-3}\s^{-1}\,$}}
+\def\gps{\hbox{$\g\s^{-1}\,$}} \def\Jy{{\rm Jy}}
+\def\keVpcmsqpspsr{\hbox{$\keV\cm^{-2}\s^{-1}\sr^{-1}\,$}}
+\def\kmps{\hbox{$\km\s^{-1}\,$}}
+\def\kmpspmp{\hbox{$\km\s^{-1}\Mpc{-1}\,$}}
+\def\Lsunppc{\hbox{$\Lsun\pc^{-3}\,$}}
+\def\Msunpc{\hbox{$\Msun\pc^{-3}\,$}}
+\def\Msunpkpc{\hbox{$\Msun\kpc^{-1}\,$}}
+\def\Msunppc{\hbox{$\Msun\pc^{-3}\,$}}
+\def\Msunppcpyr{\hbox{$\Msun\pc^{-3}\yr^{-1}\,$}}
+\def\Msunpyr{\hbox{$\Msun\yr^{-1}\,$}} \def\pcm{\hbox{$\cm^{-3}\,$}}
+
+% new def from ESO style file
+\def\arcsec{\hbox{$^{\prime\prime}$}}
+
+\newcommand{\ion}[2]{\ifmmode 
+ \mbox{\rm #1\,{\small\uppercase\expandafter{\romannumeral #2}}}
+ \else\mbox{#1\,{\small\uppercase\expandafter{\romannumeral #2}}}\fi}
+
+%\newcommand{\kms}{{\rm km~s$^{-1}$}}
+
+
+%%%%%%%%%
+
+
+
+
+
+\def\versdate {1.0; 05 June 07}
+\def\versdate {\Now}
+\lhead{}
+%\chead{\jobname}
+\rhead{}
+
+%\usepackage{currfile, abspath}
+%\usepackage{currfile-abspath}
+
+\lfoot{\sf{IOA 2016\_2019}}
+%\lfoot{\theabspath\currfilename}
+\lfoot{\jobname}
+\cfoot{\versdate }
+\rfoot{page {\thepage} of \pageref{LastPage}}
+
+\author{}
+\title{Consolidated Grant 2016-2019 Working Draft}
+
+\begin{document}
+
+
+\counterwithin{figure}{subsection}
+\pagenumbering{arabic}
+
+%\maketitle
+%{\centering Printed at: \now}
+%\centering{\fullpath}
+
+%\pagevalues
+
+%\medskip
+
+%\printinunitsof{mm}
+%\pagevalues
+
+%\medskip
+
+%\printinunitsof{in}
+%\pagevalues
+
+%\medskip
+
+%\newcommand{\someSpecialText}{A text that can be changed locally\ldots}
+%\newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
+
+%\testIt
+
+
+\newpage
+\clearpage
+
+\ifdebuglayout
+
+  \input{CG2016_2019_layout_checks.tex}
+
+   \newpage
+
+  \setcounter{section}{2}
+  \section{Science cases examples}
+  %\setcounter{tocdepth}{2}
+  %\tableofcontents
+  \newpage
+
+  \setcounter{figure}{0}
+
+  %\part{Example Theme : Example cases}
+
+  % Example
+  %\AddToShipoutPicture*{\ShowFramePicture}
+  %\input{CG2016_2019_example_v1.tex}
+  \newpage
+
+  \input{CG2016_2019_Figures_References_v1.tex}
+  \newpage
+
+  %\end{document}
+
+  \input{CG2016_2019_example_v3.tex}
+  \newpage
+
+  \newcommand{\someSpecialText}{A text that can be changed locally\ldots}
+  \newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
+
+  \testIt
+
+
+  \newpage
+
+
+  % Example
+  \input{CG2016_2019_template_case_v2.tex}
+  \newpage
+
+
+  %\renewcommand\thesection{\roman{section}}
+
+  \input{README.tex}
+  \newpage
+
+
+  \input{CG2016_2019_Notes.tex}
+  \newpage
+
+  %\end{document}
+
+  \input{CG2016_2019_STFC_Guidelines.tex}
+  \newpage
+
+
+\fi
+
+
+
+%\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
+\includepdf[pages=1-]{Consolidated_Grant_2016_19_Cover_smallfile.pdf}
+\newpage
+
+
+\setcounter{tocdepth}{2}
+\ifdebuglayout
+  \setcounter{tocdepth}{3}
+\fi
+
+%do not \clearpage if you want to bookmark the Contents
+\pdfbookmark{\contentsname}{Contents}
+%\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+%\listoffigures
+%\listoftables
+\newpage
+
+\pagenumbering{arabic}
+\renewcommand\thesection{\arabic{section}}
+
+
+%\setcounter{section}{0}
+%\input{CG2013_2016_introduction_20120213.tex}
+\input{CG2016_2019_Intro_v3_10Feb.tex}
+\newpage
+
+%\setcounter{section}{0}
+%\input{CG2016_2019_introduction_para_rgm_v1.tex}
+%\newpage
+
+%\setcounter{section}{1}
+%\input{CG2013_2016_resources_20120212.tex}
+%\input{CG2016_2019_resources_20150207.tex}
+\input{CG2016_2019_resources_20150212.tex}
+\newpage
+
+
+%%
+
+
+%\newcommand{\PathwayFile}{pathwayfile.pdf}
+%\newcommand{\PathwayFile}{CG2013_2016_PathwaysImpact_20120210.pdf}
+
+
+
+%\includepdf[pages=1-,pagecommand=\section{Section Heading}]{CG2013_2016_PathwaysImpact_20120210.pdf}
+%\includepdf[pages=-]{CG2013_2016_PathwaysImpact_20120210.pdf}
+
+%\includepdf[pages=2-,pagecommand={}]{CG2013_2016_PathwaysImpact_20120210.pdf}}
+
+%\includepdf[pages=-,pagecommand={\section{Pathways to Impact}}]{CG2013_2016_PathwaysImpact_20120210.pdf}
+
+%\input{PathwaysImpact_20120210.tex}
+%\newpage
+
+% http://tex.stackexchange.com/questions/48900/two-independent-tocs
+
+
+\setcounter{section}{2}
+
+% put the section heading on a blank page
+\topskip0pt
+\vspace*{\fill}
+%\titleformat*{\section}{\Huge\bfseries}
+\section{Science Cases}\vspace*{\fill}
+\newpage
+
+
+\setcounter{figure}{0}
+
+%\part{Theme : Fundamental and Numerical Cosmology}
+% GPE case
+%\label{subsec:case_CMB_GPE}
+\input{CG2016_2019_GPE_v4.tex}
+\newpage
+
+% ADC case
+%%%%%%%%%%Control spacing in bibliography environment (if used)
+\newlength{\bibitemsep}\setlength{\bibitemsep}{0pt}
+\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+\let\oldthebibliography\thebibliography
+\renewcommand\thebibliography[1]{%
+ \oldthebibliography{#1}%
+ \setlength{\parskip}{\bibitemsep}%
+ \setlength{\itemsep}{\bibparskip}%
+}
+%%%%%%%%%%
+%\label{subsec:case_CMB_ADC}
+%\input{CG2016_2019_ADC_v2.tex}
+%\input{CG2016_2019_ADC_20150202.tex}
+\input{CG2016_2019_ADC_20150210.tex}
+\newpage
+
+%\end{document}
+
+
+% MGH case ex Karl
+%\input{consolidated15_exKarl12Dec.tex}
+%\newpage
+
+
+% MGH/Debora case for Sijing
+%\input{consolidated15_sijing_v1.tex}
+%\label{subsec:case_Sijing_MGH_DS}
+%\input{consolidated15_sijing_v3_7Feb.tex}
+\input{consolidated15_sijing_v4_10Feb.tex}
+\newpage
+
+
+%\part{Theme : Stars and Planets}
+%% Mark Wyatt case 
+%\input{CG2016_2019_MWyatt_dummy.tex}
+%\newpage
+
+%\label{subsec:case_MWYATT_1}
+%\input{wyattexozodi_v2.tex}
+\input{wyattexozodi.tex}
+\newpage
+
+%\input{wyattpostms_v1.tex}
+%\label{subsec:case_MWYATT_2}
+%\input{wyattekb_v2.tex}
+\input{wyattekb.tex}
+\newpage
+
+
+%% CAT case 
+%\input{stfctout2015_v2.tex}
+%\label{subsec:case_CTOUT}
+\input{CG2016_2019_ctout_v4.tex}
+\newpage
+
+%% Madhu 1
+%\input{CG2016_Madhu_1_v1.tex}
+%\label{subsec:case_MADHU_1}
+%\input{CG2016_2019_Madhu_1_v0.tex}
+\input{CG2016_Madhu_1_v9.tex}
+\newpage
+
+%% Madhu 2
+%\label{subsec:case_MADHU_2}
+%\input{CG2016_Madhu_2_v1.tex}
+%\input{CG2016_Madhu_2_v2.tex}
+\input{CG2016_Madhu_2_v3.tex}
+\newpage
+
+
+%\part{Theme : The wonderful world of Gaia}
+%% NWE case 
+%\label{subsec:case_NWE}
+%\label{subsec:case_NWE_1}
+%\label{subsec:case_NWE_2}
+%\input{CG2016_2019_NWE_v3.tex}
+%\input{CG2016_2019_template_EVANS_v2.tex}
+\input{CG2016_2019_template_EVANS_v3.tex}
+\newpage
+
+%\part{Theme XXX}
+%% Observational cases
+
+
+%% ACF case 1
+%\label{subsec:case_ACF_pinto}
+%\input{acf_pinto_case_v2.tex}
+\input{acf_pinto_case_v4.tex}
+\newpage
+
+%% ACF case 2
+%\label{subsec:case_ACF_ranjan}
+%\input{acf_vasudevan_case_v3_rgm.tex}
+%\input{acf_vasudevan_case_v5_rgm.tex}
+\input{acf_vasudevan_case_v4.tex}
+\newpage
+
+%% GFG case #1
+%\input{Gaia_Alerts_Galactic.tex}
+%\newpage
+
+%% GFG case #2
+%\input{Gaia_Alerts_ExtraGalactic.tex}
+%\newpage
+
+%% GFG case Gaia alerts merged
+%\label{subsec:case_GFG_GaiaAlerts}
+\input{Gaia_Alerts_v8_sth.tex}
+\newpage
+ 
+%% MJI case
+%\input{CG2016_2019_MJI.tex}
+%\newpage
+
+%% VB case 1
+%\input{CG2016_2019_VB_1.tex}
+%\newpage
+
+%% VB case 2
+\label{subsec:case_VB}
+%\input{CG2016_2019_template_case_dwarfs2.tex}
+%\input{CG2016_2019_template_case_dwarfs_v3_rgm.tex}
+\input{CG2016_2019_template_case_dwarfs_v4.tex}
+\newpage
+
+% Rob's case
+%\label{subsec:case_RCK}
+%\input{rck_v2.tex}
+%\input{rck_v4.tex}
+% fixed the figures and missing } in the references
+\input{rck_v4_rgm.tex}
+\newpage
+
+
+
+% formation of quasars
+%\label{subsec:case_MBANERJI}
+%\input{ero_case_20150122.tex}
+\input{ero_case_20150210.tex}
+\newpage
+
+
+
+%% EoR and quasars
+%\label{subsec:case_HZQ}
+%\input{hzq_case_RGM_20150206.tex}
+%\input{hzq_case_rgm_20150210.tex}
+\input{hzq_case_rgm_v4.tex}
+\newpage
+
+%\end{document}
+
+%% IRP case 
+%\label{subsec:case_IRP}
+%\input{CG2016_2019_parry_case_v2.tex}
+%\input{CG2016_2019_parry_case-v3.tex}
+\input{CG2016_2019_parry_case_v5.tex}
+\newpage
+
+% extra blank page
+\newpage
+
+
+
+\includepdf[pages={1}, offset=0.0cm 0.0cm, pagecommand=\section{Publication Table}]{CG2016_2019_PublicationTable.pdf}
+
+
+\newcommand{\RESOURCESTABLE}{CG2016_2019_SummaryResourcesTable_20150212.pdf}
+
+
+% Add section heading to the first page
+\includepdf[pages={1}, offset=0.0cm -0.7cm, pagecommand=\section{Resources Requested Summary Table}]
+{\RESOURCESTABLE}
+
+\includepdf[pages={2-}, pagecommand={\pagestyle{fancy}}]{\RESOURCESTABLE}
+
+\newpage
+
+
+\newcommand{\GANNTCHART}{CG2016_2019_GANNT_20150212.pdf}
+
+\includepdf[landscape=true,pages={1},pagecommand=\section{GANNT Chart}]{\GANNTCHART}
+\includepdf[landscape=true,pages={2-}]{\GANNTCHART}
+
+%\includepdf[pages=1-,pagecommand=\section{Section Heading}]{CG2013_2016_PathwaysImpact_20120210.pdf}
+%\includepdf[pages=-]{CG2013_2016_PathwaysImpact_20120210.pdf}
+
+
+
+\includepdf[landscape=true,pages={1},pagecommand=\section{Summary table of existing support}]{ExistingSupportSummaryTable.pdf}
+\newpage
+
+\input{CG2016_2019_ExistingGrants_Abstracts_v1.tex}
+\newpage
+
+
+%\input{CG2016_2019_PathwaysImpact_v20150208_naw.tex}
+%\input{CG2016_2019_PathwaysImpact_v20150210_gg.tex}
+\input{CG2016_2019_PathwaysImpact_v20150304_gg.tex}
+\newpage
+\clearpage
+
+\input{CG2016_2019_DataManagementPlan_20150212.tex}
+
+\end{document}
+
+\input{CG2016_2019_Appendix_publications.tex}
+
+\newpage
+
+\input{Appendix_Gantt_chart.tex}
+
+\input{Appendix_Summary_of_grants_held.tex}
+\newpage
+
+\input{Appendix_Data_management_plan.tex}
+\newpage
+
+\input{Appendix_Impact_statement.tex}
+\newpage
+
+\end{document}
