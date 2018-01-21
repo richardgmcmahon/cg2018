@@ -1,8 +1,39 @@
+See also:
+
+/home/rgm/Projects/Grants/CG2019_2022/Draft/
+
+
 The current proposals is using:
 
 CG2019_2022.tex
 cg2081.sty
 Makefile
+
+Single cases use:
+
+CG2019_2022_master_v3.tex
+
+The file naming convention is not intuitive and CG2019_2022.tex might
+be out of synch with the single case master since CG2019_2022.tex is
+the live proposal. Backups can be found on github, the periodic
+tar archives and also the Netapp .snapshot directories.
+
+
+rgm@calx067(~){991}> cd Projects/Grants/CG2019_2022/Draft/.snapshot
+rgm@calx067(~/Projects/Grants/CG2019_2022/Draft/.snapshot){992}> ls
+cargo2b(1921191931)_home_b.310036  hourly.2   nightly.1   nightly.21
+hourly.0                           hourly.20  nightly.10  nightly.22
+hourly.1                           hourly.21  nightly.11  nightly.23
+hourly.10                          hourly.22  nightly.12  nightly.3
+hourly.11                          hourly.23  nightly.13  nightly.4
+hourly.12                          hourly.3   nightly.14  nightly.5
+hourly.13                          hourly.4   nightly.15  nightly.6
+hourly.14                          hourly.5   nightly.16  nightly.7
+hourly.15                          hourly.6   nightly.17  nightly.8
+hourly.16                          hourly.7   nightly.18  nightly.9
+hourly.17                          hourly.8   nightly.19
+hourly.18                          hourly.9   nightly.2
+hourly.19                          nightly.0  nightly.20
 
 
 make all [does what it says]
