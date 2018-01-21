@@ -60,6 +60,17 @@ all: $(MASTER).pdf
 	$(OPEN) $(MASTER).pdf
 
 
+draft: $(MASTER).pdf
+	@echo $(OS)
+	pdflatex $(MASTER)
+	pdflatex $(MASTER)
+	mv $(MASTER).pdf  $(MASTER)_draft.pdf 
+	cp $(MASTER)_draft.pdf $(BACKUP_PATH)/
+	cp $(MASTER)_draft.pdf $(BACKUP_PATH)/$(MASTER)_draft_$(DATESTAMP).pdf
+	$(OPEN) $(MASTER)_draft.pdf
+
+
+
 submit: 
 	@echo $(OS)
 	pdflatex $(MASTER)

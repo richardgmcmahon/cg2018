@@ -31,8 +31,22 @@
 
 
 % IoA CG Latex style file
+%
+% Options supported are
+% cgfullproposal will include the intro, resources and other files
+% cgdraft will add show some layout information
+% cgdebug is not implemented
+% cgnofigures will make pdf with figure bounding boxes but figures are
+% not rendered; this is useful to make a smaller pdf and also indicate
+% how much space is taken up by figures
+
+%\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
+
+% use \usepackage{cg2018} for a single case
+%\usepackage{cg2018}
+\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
 % \usepackage{cg2018}
-\usepackage[cgdraft]{cg2018}
+% \usepackage[cgdraft]{cg2018}
 
 % to view package documentation: texdoc -l <package>
 % e.g. texdoc -l amsmath
@@ -188,7 +202,7 @@
 
   %\end{document}
 
-  \input{STFC_GuidelinesNotes2017.tex}
+  \input{CG2019_2022_Notes.tex}
   \newpage
 
 \fi

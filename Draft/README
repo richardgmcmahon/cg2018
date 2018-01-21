@@ -1,0 +1,16 @@
+The current proposals is using:
+
+CG2019_2022.tex
+cg2081.sty
+Makefile
+
+
+make all [does what it says]
+
+make backup [also creates a tar file]
+
+make draft [like make all but adds a draft suffix]
+
+This is useful if you have used cgdraft option in the latex file to
+create a pdf without images being rendered. Note the cgdraft option
+requires a 'by hand' edit to the master latex file.
