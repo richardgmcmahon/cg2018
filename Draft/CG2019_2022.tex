@@ -375,17 +375,45 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \newpage
 
 
+
 \appendix
 \addcontentsline{toc}{section}{Appendices}
+Appendices start here
+\newpage
+
+% Publications statistics
+\addcontentsline{toc}{subsection}{A Publication Table}
 \includepdf[pages={1}, offset=0.0cm 0.0cm,
   pagecommand=\section{A Publication Table}]
            {ConsolGrant_Pubs_2018-2NEWDATA.pdf}  
 \includepdf[pages={1}, offset=0.0cm 0.0cm,
   pagecommand=\section{A Publication Table}]
            {CG2019_2022_PublicationsTablev1.pdf}
-\addcontentsline{toc}{subsection}{A Publication Table}
+
+% Resources Requested Summary Table}
 \addcontentsline{toc}{subsection}{B Resources Requested Summary Table}
+
+
+
+% Gantt Chart
+% 
 \addcontentsline{toc}{subsection}{C GANNT Chart}
+% Include GANNT chart as a pdf
+% \newcommand{\GANNTCHART}{CG2016_2019_GANNT_20150212.pdf}
+\newcommand{\GANNTCHART}{GANTT_chart_20180110_ds.pdf}
+% \IfFileExists{filename}{true-branch}{false-branch} 
+\IfFileExists{\GANNTCHART}{
+    \addcontentsline{toc}{section}{Gannt Chart}
+    \includepdf{Gantt_Chart-template.pdf}
+    \includepdf[landscape=true,pages={1},pagecommand=\section{GANNT Chart}]
+               {\GANNTCHART}
+    \includepdf[landscape=true,pages={2-}]{\GANNTCHART}
+}
+
+
+
+
+
 \addcontentsline{toc}{subsection}{D Summary table of existing support}
 \addcontentsline{toc}{subsection}{E Abstracts of related support grants}
 

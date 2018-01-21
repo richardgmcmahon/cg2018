@@ -31,23 +31,27 @@
 \documentclass[11pt, a4paper]{article}
 
 % IoA CG Latex style file
+%
 % Options supported are
 % cgfullproposal will include the intro, resources and other files
 % cgdraft will add show some layout information
 % cgdebug is not implemented
-%\usepackage[cgdraft, cgdebug, cgfullproposal]{cg2018}
+% cgnofigures will make pdf with figure bounding boxes but figures are
+% not rendered; this is useful to make a smaller pdf and also indicate
+% how much space is taken up by figures
+
+%\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
 
 % use \usepackage{cg2018} for a single case
-\usepackage{cg2018}
+%\usepackage{cg2018}
+\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % drafting layout checks turned on by cgdraft option
-% \draftlayoutfalse
-% \draftlayouttrue
 \ifcgdraft
     \layoutpagecheck
-    \fi
+\fi
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % turn on to process supporting materials
@@ -55,8 +59,6 @@
 
 % to view package documentation: texdoc -l <package>
 % e.g. texdoc -l amsmath
-
-
 
 %%%%
 % https://ctan.org/pkg/amsmath?lang=en
@@ -202,7 +204,7 @@
 % Change the filename as required; .tex is assumed by \input
 % note the use of ./, otherwise the whole latex/tex path will be searched
 \newcommand{\FileIntroduction}{./CG2019_2022_Intro_v1}
-% \IfFileExists{filename}{true-branch}{false-branch}
+% \IfFileExists{filename}{true-branch}{false-branch} 
 \IfFileExists{\FileIntroduction}{
     \addcontentsline{toc}{section}{
         Introduction [still heavily based on 2016\_2019]}
