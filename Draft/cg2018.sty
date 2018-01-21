@@ -67,7 +67,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % https://tex.stackexchange.com/questions/241523/header-line-doesnt-span-width-of-page
-% ``loading geometry before fancyhdr will fix it''
+% loading geometry before fancyhdr will fix it''
 \usepackage[margin=2.0cm]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -167,8 +167,9 @@
 \hypersetup{colorlinks=true, linkcolor=blue}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Making page margins visible
+% https://tex.stackexchange.com/questions/387077/what-is-the-difference-between-usepackageshowframe-and-usepackageshowframe
 % https://texblog.org/2011/04/04/make-page-margins-visible
 % \usepackage{showframe}
 % If you only need to show margins for a particular page, use:
@@ -180,6 +181,18 @@
 % [noframe] gives page by page control
 % \usepackage[noframe]{showframe}
 \usepackage[noframe]{showframe}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% layout details
+% The package layout defines a command \layout, which will show a summary
+% of the layout of the current document.
+\usepackage{layout} % creates a graph of the page layout
+\usepackage{layouts} % has the \pagevalues command for printing layout
+
+
+\usepackage[type=none]{fgruler}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % margin notes
@@ -387,12 +400,6 @@
 % use this to have two independent table of contents
 \usepackage{titletoc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% layout details
-% The package layout defines a command \layout, which will show a summary
-% of the layout of the current document.
-\usepackage{layout} % creates a graph of the page layout
-\usepackage{layouts} % has the \pagevalues command for printing layout
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -433,9 +440,19 @@
 \def\Now{\today\ \now}
 \def\@Now{\today\ \now}
 
+\newcommand{\fontcheck}{
+% font check
+\hfill\break
+\noindent ABCDEFGHIJKLMNOPQRSTUVWXYZ \hfill\break
+\noindent abcdefghijklmnopqrstuvwxyz \hfill\break
+Internalcurrentfont: \printinternalcurrentfont \hfill\break
+Externalcurrentfont: \printexternalcurrentfont \hfill\break
+}
 
-\newcommand{\layoutpagecheck}
-{
+
+
+\newcommand{\layoutpagecheck}{
+    
     \AddToShipoutPicture*{\ShowFramePicture}
 
     \maketitle
@@ -490,8 +507,20 @@ printexternalcurrentfont: \printexternalcurrentfont}}
     % \pagevalues
 
     \newpage
-
+    
+    \fgruler{upperleft}{0.0cm}{0.0cm}
     \AddToShipoutPicture*{\ShowFramePicture}
     \layout
 
+
+
+%\fgruler{upperleft}
+
+
+%\medskip
+
+%\ruler{rightup}{3cm}
+
+\newpage
+    
 }

@@ -21,19 +21,20 @@
 % \documentclass[11pt,titlepage]{article}
 % \documentclass{article}[11pt,twoside,titlepage]
 % \documentclass[11pt,twoside]{article}
+
+%\documentclass{article}[11pt]
 % WARNING: This wrongly formatted line will will not give an error and
 % will default to 12pt
-%\documentclass{article}[11pt] 
 
 
 % This is what we are using
-\documentclass[11pt,a4paper]{article}
-
+\documentclass[11pt, a4paper]{article}
 
 % IoA CG Latex style file
-% fullproposal will include the intro, resources and other files
-% draft will add show some layout information
-% debug is not implemented
+% Options supported are
+% cgfullproposal will include the intro, resources and other files
+% cgdraft will add show some layout information
+% cgdebug is not implemented
 %\usepackage[cgdraft, cgdebug, cgfullproposal]{cg2018}
 
 % use \usepackage{cg2018} for a single case
@@ -41,24 +42,23 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% turn on draft checks
+% drafting layout checks turned on by cgdraft option
 % \draftlayoutfalse
 % \draftlayouttrue
 \ifcgdraft
     \layoutpagecheck
-\fi
+    \fi
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % turn on to process supporting materials
 % \fullproposaltrue
-
-
-
-
 
 % to view package documentation: texdoc -l <package>
 % e.g. texdoc -l amsmath
 
+
+
+%%%%
 % https://ctan.org/pkg/amsmath?lang=en
 % amsmath – AMS mathematical facilities for LaTeX
 % http://www.ams.org/publications/authors/tex/amslatex
@@ -123,7 +123,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%This also works:
+% if you use list environment this will tighten it up; put into
+% your case
 %\begin{itemize}
 % \setlength\itemsep{0pt}\setlength\parsep{0pt}\setlength\parskip{0pt}
 %\item Item1
@@ -142,28 +143,24 @@
 % this might be changed
 \pagenumbering{arabic}
 
-
-%\medskip
-%\newcommand{\someSpecialText}{A text that can be changed locally\ldots}
-%\newcommand{\testIt}{The value of \texttt{someSpecialText} is : ``\someSpecialText''.}
-
-%\testIt
-
-% adjust this
+% this will be adjusted to value of 1 for final submitted version
 \setcounter{tocdepth}{3}
 
+% set to 3 for debug
 \ifcgdebug
   \setcounter{tocdepth}{3}
 \fi
 
-%do not \clearpage if you want to bookmark the Contents
+% do not \clearpage if you want to bookmark the Contents
 %\pdfbookmark{\contentsname}{Contents}
 %\pdfbookmark{\contentsname}{toc}
 \tableofcontents
 \newpage
 
 \ifcgdraft
-    This list of figures is only for the draft checking of figures numbers and figure captions
+
+    This list of figures is only for the draft checking of figures numbers
+    and figure captions
     
     \listoffigures
     \newpage
@@ -190,6 +187,46 @@
 % In order to have the science cases numbered 1 to n; no numbering is used to
 % for the Introduction and Resources
 % To add them to the toc \addcontentsline is used
+
+% \IfFileExists{filename}{true-branch}{false-branch}
+% note the use of ./, otherwise the whole latex/tex path will be searhced
+
+
+% Proposal Itroduction
+% A maximum of two sides of A4 is permitted to describe the programme in
+% the group, or department, setting. In addition Applicants requesting
+% resources on proposals submitted to both the AO/AT and SS/PL calls should be
+% identified in this section in both proposals and their presence on both
+% grants explicitly justified.
+%
+% Change the filename as required; .tex is assumed by \input
+% note the use of ./, otherwise the whole latex/tex path will be searched
+\newcommand{\FileIntroduction}{./CG2019_2022_Intro_v1}
+% \IfFileExists{filename}{true-branch}{false-branch}
+\IfFileExists{\FileIntroduction}{
+    \addcontentsline{toc}{section}{
+        Introduction [still heavily based on 2016\_2019]}
+    \input{\FileIntroduction}
+    }
+
+% A maximum of two pages of A4 is permitted for resources cutting across
+% ALL projects i.e. travel, equipment, system manager support, secretarial
+% support, visiting researcher funding, etc.
+% (NOT to be used for project specific resources).
+%
+% Change the filename below as required; .tex is assumed by \input
+% note the use of ./, otherwise the whole latex/tex path will be searched
+\newcommand{\FileResources}{./CG2019_2022_Resources_v1}
+% \IfFileExists{filename}{true-branch}{false-branch}
+\IfFileExists{\FileResources}{
+    \addcontentsline{toc}{section}{
+        Resources [still heavily based on 2016\_2019]}
+    \input{\FileResources}
+    \newpage
+    } 
+% not sure why need \newpage is needed twice
+% \newpage
+
 
 \ifcgfullproposal
   % add toc line but use \section*{} to avoid section numbering
@@ -223,7 +260,8 @@
 % changed the figure names
 %\input{CG2019_2022_Sijacki_v1_rgm_v1.tex}
 %\input{CG2019_2022_Sijacki_v2.tex}
-\input{cg19_haehnelt3Jan18_v3.tex}
+%\input{cg19_haehnelt3Jan18_v3.tex}
+\input{CG2019_2022_Reynolds_case_v3.tex}
 \newpage
 
 \end{document}
