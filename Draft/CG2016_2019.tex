@@ -564,22 +564,21 @@
 \includepdf[pages={1}, offset=0.0cm 0.0cm, pagecommand=\section{Publication Table}]{CG2016_2019_PublicationTable.pdf}
 
 
-\newcommand{\RESOURCESTABLE}{CG2016_2019_SummaryResourcesTable_20150212.pdf}
-
-
+% Resources Requested Summary Table
+\newcommand{\RESOURCESTABLE}{Requested_ResourcesSummaryTables_20180110.pdf}
 % Add section heading to the first page
 \includepdf[pages={1}, offset=0.0cm -0.7cm, pagecommand=\section{Resources Requested Summary Table}]
 {\RESOURCESTABLE}
-
 \includepdf[pages={2-}, pagecommand={\pagestyle{fancy}}]{\RESOURCESTABLE}
-
 \newpage
 
 
+% Gantt Chart
 \newcommand{\GANNTCHART}{CG2016_2019_GANNT_20150212.pdf}
 
 \includepdf[landscape=true,pages={1},pagecommand=\section{GANNT Chart}]{\GANNTCHART}
 \includepdf[landscape=true,pages={2-}]{\GANNTCHART}
+
 
 %\includepdf[pages=1-,pagecommand=\section{Section Heading}]{CG2013_2016_PathwaysImpact_20120210.pdf}
 %\includepdf[pages=-]{CG2013_2016_PathwaysImpact_20120210.pdf}

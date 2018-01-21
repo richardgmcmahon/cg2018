@@ -404,9 +404,15 @@ Appendices start here
   pagecommand=\section{A Publication Table}]
            {CG2019_2022_PublicationsTablev1.pdf}
 
+
 % Resources Requested Summary Table}
 \addcontentsline{toc}{subsection}{B Resources Requested Summary Table}
-
+\newcommand{\RESOURCESTABLE}{Requested_ResourcesSummaryTables_20180110.pdf}
+% Add section heading to the first page
+\includepdf[pages={1}, offset=0.0cm -0.7cm, pagecommand=\section{Resources Requested Summary Table}]
+{\RESOURCESTABLE}
+\includepdf[pages={2-}, pagecommand={\pagestyle{fancy}}]{\RESOURCESTABLE}
+\newpage
 
 
 % Gantt Chart
