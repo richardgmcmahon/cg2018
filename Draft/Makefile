@@ -60,6 +60,8 @@ all: $(MASTER).pdf
 	$(OPEN) $(MASTER).pdf
 
 
+# this is identical to all except that suffix _draft is added; this
+# is used for the graphicx draft option that does not render figures
 draft: $(MASTER).pdf
 	@echo $(OS)
 	pdflatex $(MASTER)
