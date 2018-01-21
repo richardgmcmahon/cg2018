@@ -9,8 +9,6 @@
 %
 % (2) make clean might be needed
 %
-% (3) two conditional parameters are available;
-%     ifdebug; ifdraft
 %
 
 
@@ -43,7 +41,7 @@
 %\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
 
 % use \usepackage{cg2018} for a single case
-\usepackage{cg2018}
+\usepackage[cgfullproposal]{cg2018}
 
 
 
@@ -174,8 +172,11 @@
 
 \fi
 
+% \IfFileExists{filename}{true-branch}{false-branch} 
 \ifcgdraft
-    \input{CG2019_2022_Notes.tex}
+    \newcommand{\FileNotes}{./CG2019_2022_Notes}
+    \IfFileExists{\FileNotes}{\input{\FileNotes}
+    }
     \newpage
 \fi
 
@@ -194,6 +195,9 @@
 % note the use of ./, otherwise the whole latex/tex path will be searhced
 
 
+\ifcgfullproposal
+
+
 % Proposal Itroduction
 % A maximum of two sides of A4 is permitted to describe the programme in
 % the group, or department, setting. In addition Applicants requesting
@@ -204,11 +208,15 @@
 % Change the filename as required; .tex is assumed by \input
 % note the use of ./, otherwise the whole latex/tex path will be searched
 \newcommand{\FileIntroduction}{./CG2019_2022_Intro_v1}
+
+
+% add toc line but use \section*{} to avoid section numbering
 % \IfFileExists{filename}{true-branch}{false-branch} 
 \IfFileExists{\FileIntroduction}{
-    \addcontentsline{toc}{section}{
-        Introduction [still heavily based on 2016\_2019]}
+    \addcontentsline{toc}{section}
+        {Introduction [still heavily based on 2016\_2019]}
     \input{\FileIntroduction}
+    \newpage
     }
 
 % A maximum of two pages of A4 is permitted for resources cutting across
@@ -221,24 +229,12 @@
 \newcommand{\FileResources}{./CG2019_2022_Resources_v1}
 % \IfFileExists{filename}{true-branch}{false-branch}
 \IfFileExists{\FileResources}{
-    \addcontentsline{toc}{section}{
-        Resources [still heavily based on 2016\_2019]}
+    \addcontentsline{toc}{section}
+        {Resources requested [still heavily based on 2016\_2019]}
     \input{\FileResources}
     \newpage
     } 
-% not sure why need \newpage is needed twice
-% \newpage
 
-
-\ifcgfullproposal
-  % add toc line but use \section*{} to avoid section numbering
-  \addcontentsline{toc}{section}{Introduction [still heavily based on 2016\_2019]}
-  \input{CG2019_2022_Intro_v1.tex}
-  \newpage
-
-  \addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
-  \input{CG2019_2022_Resources_v1.tex}
-  \newpage
 
 \fi
 
@@ -263,8 +259,8 @@
 %\input{CG2019_2022_Sijacki_v1_rgm_v1.tex}
 %\input{CG2019_2022_Sijacki_v2}
 %\input{cg19_haehnelt3Jan18_v3}
-% \input{CG2019_2022_Reynolds_case_v3}
-\input{CG2019_2022_McMahon_v1}
+\input{CG2019_2022_Reynolds_case_v3}
+%\input{CG2019_2022_McMahon_v1}
 \newpage
 
 \end{document}
