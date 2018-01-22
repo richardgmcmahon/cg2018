@@ -9,6 +9,13 @@
 %
 % Essential reading for programmers:
 %   The Tex Book, Chapter 20
+%
+% 
+% Each option has an associated boolean
+%
+%
+%%
+%%
 %%
 %% History:
 %%
@@ -23,13 +30,16 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cg2018}[IoA STFC Consolidated Grant 2018]
+%\ProvidesPackage{cg2018}
 \newcommand{\checkmessage}{\message{Hello World}}
 \checkmessage
 
 
 % https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
 % used for layout optional checks
+% boolean for each option
 \newif\ifcgdebug
+\newif\ifcgcaseonly
 \newif\ifcgdraft
 \newif\ifcgnofigures
 \newif\ifcgfullproposal
@@ -40,6 +50,7 @@
 \DeclareOption*{\PackageWarning{cg2018}{Unknown ‘\CurrentOption’}}
 %
 \DeclareOption{cgdraft}{\cgdrafttrue}
+\DeclareOption{cgcasesonly}{\cgcasesonlytrue}
 \DeclareOption{cgdebug}{\cgdebugtrue}
 \DeclareOption{cgnofigures}{\cgnofigurestrue}
 \DeclareOption{cgfullproposal}{\cgfullproposaltrue}
@@ -63,8 +74,6 @@
 \else
     \usepackage{graphicx}
 \fi
-
-
 
 
 % Needed for Paul Hewett's case
