@@ -1,6 +1,5 @@
 %
-% IoA Consolidated PATT2 style file.
-% based on patt2.sty file written by rgm in 1996
+% IoA Consolidated Grant style file.
 %
 % https://en.wikibooks.org/wiki/LaTeX/Creating_Packages
 %
@@ -31,9 +30,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cg2018}[IoA STFC Consolidated Grant 2018]
 %\ProvidesPackage{cg2018}
-\newcommand{\checkmessage}{\message{Hello World}}
-\checkmessage
+%\newcommand{\checkmessage}{\message{Hello World}}
+%\checkmessage
 
+
+%%
+%% declare boolean conditionals used by options
+%%
 
 % https://en.wikibooks.org/wiki/LaTeX/Plain_TeX#Self_defined_conditionals
 % used for layout optional checks
@@ -45,8 +48,7 @@
 \newif\ifcgfullproposal
 
 %%This parts handles the options passed to the package.
-
-% examples
+% maybe should exit with error is an unknown option is used
 \DeclareOption*{\PackageWarning{cg2018}{Unknown ‘\CurrentOption’}}
 %
 \DeclareOption{cgdraft}{\cgdrafttrue}
@@ -56,19 +58,56 @@
 \DeclareOption{cgfullproposal}{\cgfullproposaltrue}
 \ProcessOptions\relax
 
-% \usepackage[< options >]{gitinfo2}
-% \usepackage{gitinfo2}
-% Default raisemark=1.5\baselineskip]{gitinfo2}
+% https://tex.stackexchange.com/questions/11311/how-to-include-a-document-into-another-document
+% You can use the standalone, docmute or subfiles package to make LaTeX
+% ignore the second \begin{document} preamble in a secondary file
+% tex.stackexchange prefers docmute but warns that for complex documents
+% using many packages it might cause problems
+\usepackage{docmute}
 
+%% load packages used in draft mode option
 \ifcgdraft
+
+  %%add support for git version watermarking 
+  % \usepackage[< options >]{gitinfo2}
+  % \usepackage{gitinfo2}
+  % Default raisemark=1.5\baselineskip]{gitinfo2}
   \usepackage[mark, raisemark=0.25\baselineskip]{gitinfo2}
 
-  % gitinfo2 settings
+  % change the gitinfo2 watermark from default
   % \renewcommand{\gitMark}{git: \gitCommitterIsoDate}
   % \renewcommand{\gitMark}{\gitAbbrevHash:\gitCommitterIsoDate}
-  
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % layout details
+  % The package layout defines a command \layout, which will show a summary
+  % of the layout of the current document.
+  \usepackage{layout} % creates a graph of the page layout
+
+  \usepackage{layouts} % has the \pagevalues command for printing layout
+
+  \usepackage[type=none]{fgruler}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  % Making page margins visible
+  % https://tex.stackexchange.com/questions/387077/what-is-the-difference-between-usepackageshowframe-and-usepackageshowframe
+  % https://texblog.org/2011/04/04/make-page-margins-visible
+  % \usepackage{showframe}
+  % If you only need to show margins for a particular page, use:
+  % \usepackage[noframe]{showframe} and at the page:
+  % \AddToShipoutPicture*{\ShowFramePicture}
+  %
+  % The geometry package offers similar functionality:
+  % \usepackage[showframe]{geometry} show the frame with lines;
+  % [noframe] gives page by page control
+  % \usepackage[noframe]{showframe}
+  \usepackage[noframe]{showframe}
+
+% end of packages using in draft mode option
 \fi
 
+% option to not render the figures and only show bounding boxes
 \ifcgnofigures
     \usepackage[draft]{graphicx}
 \else
@@ -96,6 +135,81 @@
 %\pagestyle{headings}
 
 \usepackage{lastpage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change size of section, subsection, subsubsection, paragraph and 
+% subparagraph title fonts and starting text
+%
+% https://tex.stackexchange.com/questions/59726/change-size-of-section-subsection-subsubsection-paragraph-and-subparagraph-ti
+% https://tex.stackexchange.com/questions/99170/starting-text-right-after-section-or-subsection-title
+\usepackage{titlesec}
+
+
+%\usepackage[compact]{titlesec}
+%\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
+%\titlespacing*{\section}{0pt}{*0}{0pt}
+% [runin] starts text on same line as title
+\titleformat{\subsection}[runin]{\normalfont\bfseries}{\thesubsection.}{3pt}{}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection.}{3pt}{}
+
+%\usepackage{titletoc}
+%\titlecontents{section}[2.5em]{\medskip\bfseries}%
+%{\contentslabel[\color{blue}Project: \thecontentslabel.]{7em}\enspace}%numbered
+%{\hskip-3em}%numberless
+%{\titlerule*[1.2pc]{.}\contentspage}%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[dvips]{color}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% multicol – Intermix single and multiple columns
+% https://ctan.org/pkg/multicol?lang=en
+% Multicol defines a multicols environment which type­sets text in multiple
+% columns (up to a maximum of 10), and (by default) balances the end of each
+% column at the end of the environment. The package enables you to switch
+% between any (permitted) number of columns at will
+\usepackage{multicol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsmath}
+%\usepackage{amssym}
+
+%\usepackage{mathabx} % added 2018-01-02 for Ollie S \Earth symbol
+%\usepackage{stmaryrd}
+%\usepackage{times}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Figure related packages
+\usepackage{wrapfig}
+\usepackage{sidecap}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% package to load whole pdf pages e.g. Gannt Chart
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use this change section/subsection style figure numbers
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+%\counterwithin{figure}{subsection}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use this to produce navigation hyperlinks for the pdf. 
+% i.e. table of contents has clickable bookmarks
+% use bookmark addon to which fixes some hyperref bugs
+% http://stackoverflow.com/questions/1483396/how-to-explicitly-end-a-part-in-latex-with-hyperref
+\usepackage{hyperref}
+\usepackage{bookmark,hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue}
 
 
 
@@ -190,33 +304,6 @@
 \usepackage{bookmark,hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% Making page margins visible
-% https://tex.stackexchange.com/questions/387077/what-is-the-difference-between-usepackageshowframe-and-usepackageshowframe
-% https://texblog.org/2011/04/04/make-page-margins-visible
-% \usepackage{showframe}
-% If you only need to show margins for a particular page, use:
-% \usepackage[noframe]{showframe} and at the page:
-% \AddToShipoutPicture*{\ShowFramePicture}
-%
-% The geometry package offers similar functionality:
-% \usepackage[showframe]{geometry} show the frame with lines;
-% [noframe] gives page by page control
-% \usepackage[noframe]{showframe}
-\usepackage[noframe]{showframe}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% layout details
-% The package layout defines a command \layout, which will show a summary
-% of the layout of the current document.
-\usepackage{layout} % creates a graph of the page layout
-
-\usepackage{layouts} % has the \pagevalues command for printing layout
-
-
-\usepackage[type=none]{fgruler}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
