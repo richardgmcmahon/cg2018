@@ -43,9 +43,10 @@
 %\usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
 
 % use \usepackage{cg2018} for a single case
-%\usepackage{cg2018}
+\usepackage{cg2018}
 % \usepackage[cgdraft, cgdebug, cgfullproposal, cgnofigures]{cg2018}
-\usepackage[cgdraft, cgdebug, cgfullproposal]{cg2018}
+% \usepackage[cgdraft, cgdebug, cgfullproposal]{cg2018}
+% \usepackage{cg2018_case}
 % \usepackage[cgdraft]{cg2018}
 
 % to view package documentation: texdoc -l <package>
@@ -124,9 +125,10 @@
 %\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-% \author{}
+\author{Manda Banerji, Vasily Belokurov, etc}
 
 \title{Consolidated Grant 2019-2022 Working Draft}
+
 
 \begin{document}
 
@@ -180,14 +182,24 @@
 
 
 
-\setcounter{tocdepth}{2}
-\ifcgdebug
-  \setcounter{tocdepth}{3}
-\fi
+%\setcounter{tocdepth}{2}
+%\ifcgdebug
+%  \setcounter{tocdepth}{3}
+%\fi
+
+
+\maketitle
+\newpage
+\centerline{This page is intentionally blank so cases start on odd pages}
+\newpage
 
 %do not \clearpage if you want to bookmark the Contents
 %\pdfbookmark{\contentsname}{Contents}
 %\pdfbookmark{\contentsname}{toc}
+%\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}
+\pdfbookmark[section]{\contentsname}{toc}
+% Add toc line for Science cases
+\setcounter{tocdepth}{1}
 \tableofcontents
 \newpage
 
@@ -216,6 +228,8 @@ projects have a numbering from 1 to n; or x.1 to x.n
 
 % start the proposal here
 
+\maketitle
+
 \pagenumbering{roman}
 
 % In order to have the science cases numbered 1 to n; no numbering is used to
@@ -223,12 +237,15 @@ projects have a numbering from 1 to n; or x.1 to x.n
 % To add them to the toc \addcontentsline is used
 
 % add toc line but use \section*{} to avoid section numbering
-\addcontentsline{toc}{section}{Introduction [still heavily based on 2016\_2019]}
-\input{CG2019_2022_Intro_v1.tex}
+\addcontentsline{toc}{section}{Introduction}
+%\input{CG2019_2022_Intro_v4.tex}
+\input{CG2019_2022_Intro_v6}
 \newpage
 
-\addcontentsline{toc}{section}{Resources requested [still heavily based on 2016\_2019]}
-\input{CG2019_2022_Resources_v1.tex}
+\addcontentsline{toc}{section}{Resources requested}
+\pdfbookmark[section]{\contentsname}{toc}
+% \input{CG2019_2022_Resources_v3.tex}
+\input{CG2019_2022_Resources_v4}
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,12 +259,15 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \pagenumbering{arabic}
 \renewcommand\thesection{\arabic{section}}
 
-% Add toc line for Science cases
 \addcontentsline{toc}{section}{Science cases [subsections shown for drafting]}
+
+
+
 
 %\part{Theme : CMB}
 % \input{CG2019_2022_Challinor_case_v1.tex}
-\input{CG2019_2022_Challinor_case_v2.tex}
+% \input{CG2019_2022_Challinor_case_v2.tex}
+\input{CG2019_2022_Challinor_case_v3}
 \newpage
 
 %\part{Theme : CMB}
@@ -259,57 +279,61 @@ projects have a numbering from 1 to n; or x.1 to x.n
 %\part{Theme : Numerical Cosmology}
 \label{subsec:case_Haehnelt}
 %\input{cg19_haehnelt22Dec17_v2.tex}
-\input{cg19_haehnelt3Jan18_v3.tex}
+%\input{cg19_haehnelt3Jan18_v3.tex}
+%\input{cg19_haehnelt27Jan18_v5}
+\input{cg19_haehnelt27Jan18_v5bis}
 \newpage
+
 
 \label{subsec:case_Sijacki}
 %\input{CG2019_2022_Sijacki_v1.tex}
 % changed the figure names
-%\input{CG2019_2022_Sijacki_v1_rgm_v1.tex}
-\input{CG2019_2022_Sijacki_v2.tex}
+%\input{CG2019_2022_Sijacki_v4}
+\input{CG2019_2022_Sijacki_v5}
 \newpage
 
 
-%\part{Theme : High Energy Astrophysics}
-\label{subsec:case_Reynolds}
-\input{CG2019_2022_Reynolds_case_v3.tex}
-\newpage
 
 %
 \label{subsec:case_Madhu}
-\input{CG2019_2022_template_case_v1_nm.tex}
+%\input{CG2019_2022_template_case_v1_nm.tex}
+\input{madhu_v2.tex}
 \newpage
 
 \label{subsec:case_Shorttle}
-\input{CG2019_2022_shorttlev2.tex}
+%\input{CG2019_2022_shorttlev2.tex}
+% \input{CG2019_2022_shorttlev3}
+\input{CG2019_2022_shorttlev5}
 \newpage
 
 %
 \label{subsec:case_Clarke}
 % \input{ClarkeTazzari2.tex}
 % \input{ClarkeTazzari4.tex}
-\input{ClarkeTazzari5}
+%\input{ClarkeTazzari5}
+\input{ClarkeTazzari8}
 \newpage
 
 %
 \label{subsec:case_Wyatt}
 \input{wyattekb}
+%\input{wyattekbv2}
 \newpage
 
 % 
 \label{subsec:case_Tout}
-\input{CG2019_2022_tout.tex}
+%\input{CG2019_2022_tout}
+\input{CG2019_2022_tout_v3}
 \newpage
 
 
 \label{subsec:case_Evans1}
-\input{Evans_case1.tex}
+\input{Evans_case1}
 \newpage
 
-\label{subsec:case_Evans2}
-\input{Evans_case2.tex}
-\newpage
-
+%\label{subsec:case_Evans2}
+%\input{Evans_case2}
+%\newpage
 
 \label{subsec:case_Belokurov1}
 \input{CG2019_2022_halo_gaiaweave.tex}
@@ -321,98 +345,130 @@ projects have a numbering from 1 to n; or x.1 to x.n
 \newpage
 
 \label{subsec:case_Gilmore}
-\input{CG2019_2022_template_case_v1_GG.tex}
+%\input{CG2019_2022_template_case_v1_GG.tex}
+\input{GG_v2}
 \newpage
 
 \label{subsec:case_GaiaAlerts}
 %\input{CG2019_2022_GaiaAlerts_v1.tex}
-\input{CG2019_2022_GaiaAlerts_v8}
+%\input{CG2019_2022_GaiaAlerts_v8}
+\input{CG2019_2022_GaiaAlerts_v12}
 \newpage
+
+
+%\part{Theme : High Energy Astrophysics}
+\label{subsec:case_Reynolds}
+\input{CG2019_2022_Reynolds_case_v4.tex}
+\newpage
+
 
 
 \label{subsec:case_Mandel}
 % \input{CG2019_2022_kmandel_case_v1.tex}
 % \input{CG2019_2022_kmandel_case_v2.tex}
-\input{CG2019_2022_kmandel_case_v3.tex}
+%\input{CG2019_2022_kmandel_case_v3.tex}
+\input{CG2019_2022_kmandel_case_v5}
 \newpage
 
 %\part{Theme: Theme 2}
 \label{subsec:case_Banerji}
 %\input{CG2019_2022_template_case_mbanerji_v1.tex}
-\input{CG2019_2022_case_mbanerji_v2.tex}
+%\input{CG2019_2022_case_mbanerji_v2.tex}
+\input{CG2019_2022_case_mbanerji_v5}
 \newpage
 
 %\part{Theme: Theme 2}
 \label{subsec:case_Hewett}
 %\input{CG2019_2022_Hewett_v1.tex}
-\input{hewett_cg_v3.tex}
+%\input{hewett_cg_v3.tex}
+\input{hewett_cg_v4}
 \newpage
 
 %% EoR and quasars
 %\part{Theme: Theme 2}
 \label{subsec:case_McMahon}
-\input{CG2019_2022_McMahon_v1.tex}
+%\input{CG2019_2022_McMahon_v1.tex}
+\input{McMahon_v2.tex}
 \newpage
 
 
 \label{subsec:case_Parry}
-\input{parry_v1.tex}
+%\input{parry_v1.tex}
+%\input{parry_v5}
+%\input{parry_v6}
+\input{parry_v7}
 \newpage
 
 
 
 \appendix
 \addcontentsline{toc}{section}{Appendices}
-Appendices start here
-\newpage
+%Appendices start here
+%\newpage
 
 % Publications statistics
-\addcontentsline{toc}{subsection}{A Publication Table}
+\addcontentsline{toc}{subsection}{Publications Table}
+\newcommand{\PUBLICATIONSTABLE}{ConsolGrant_Pubs_2018_v3.pdf}
 \includepdf[pages={1}, offset=0.0cm 0.0cm,
-  pagecommand=\section{A Publication Table}]
-           {ConsolGrant_Pubs_2018-2NEWDATA.pdf}  
-\includepdf[pages={1}, offset=0.0cm 0.0cm,
-  pagecommand=\section{A Publication Table}]
-           {CG2019_2022_PublicationsTablev1.pdf}
+            pagecommand=\section{Publications Table}]
+           {\PUBLICATIONSTABLE}
 
 % Resources Requested Summary Table}
-\addcontentsline{toc}{subsection}{B Resources Requested Summary Table}
-\newcommand{\RESOURCESTABLE}{Requested_ResourcesSummaryTables_20180110.pdf}
+\addcontentsline{toc}{subsection}{Resources Requested Summary Table}
+\newcommand{\RESOURCESTABLE}{Requested_Summary_Tables_20180205.pdf}
 % Add section heading to the first page
-\includepdf[pages={1}, offset=0.0cm -0.7cm, pagecommand=\section{Resources Requested Summary Table}]
+\includepdf[pages={1}, offset=0.5cm -0.2cm, pagecommand=\section{Resources Requested Summary Table}]
 {\RESOURCESTABLE}
-\includepdf[pages={2-}, pagecommand={\pagestyle{fancy}}]{\RESOURCESTABLE}
+\includepdf[pages={2-}, offset=0.5cm -0.2cm, pagecommand={\pagestyle{fancy}}]{\RESOURCESTABLE}
 \newpage
 
 
 % Gantt Chart
 % 
-\addcontentsline{toc}{subsection}{C GANNT Chart}
+\addcontentsline{toc}{subsection}{GANNT Chart}
 % Include GANNT chart as a pdf
-% \newcommand{\GANNTCHART}{CG2016_2019_GANNT_20150212.pdf}
-\newcommand{\GANNTCHART}{GANTT_chart_20180110_ds.pdf}
+%\newcommand{\GANNTCHART}{CG2016_2019_GANNT_20150212.pdf}
+%\newcommand{\GANNTCHART}{CG2019_2022_GANTT_chart_20180125.pdf}
+%\newcommand{\GANNTCHART}{CG2019_2022_GANTT_chart_20180125_landscape.pdf}
+\newcommand{\GANNTCHART}{GANTT_chart_20180205.pdf}
+
 % \IfFileExists{filename}{true-branch}{false-branch} 
 \IfFileExists{\GANNTCHART}{
-    \addcontentsline{toc}{section}{Gannt Chart}
-    \includepdf{Gantt_Chart-template.pdf}
-    \includepdf[landscape=true,pages={1},pagecommand=\section{GANNT Chart}]
+    % \addcontentsline{toc}{section}{Gannt Chart}
+    % \includepdf{Gantt_Chart-template.pdf}
+    \includepdf[landscape=true,pages={1},pagecommand=\section{Gannt Chart}]
                {\GANNTCHART}
     \includepdf[landscape=true,pages={2-}]{\GANNTCHART}
 }
 
-\addcontentsline{toc}{subsection}{D Summary table of existing support}
-\addcontentsline{toc}{subsection}{E Abstracts of related support grants}
 
+\addcontentsline{toc}{subsection}{D Summary table of existing support grants}
+\newcommand{\EXISTINGSUPPORTTABLE}{ExistingSupport_Spreadsheet.pdf}
+% Add section heading to the first page
+\includepdf[landscape=true, pages={1}, offset=0.0cm -1.0cm,
+            pagecommand=\section{Summary table of existing related support grants}]
+           {\EXISTINGSUPPORTTABLE}
+\newpage
+
+\addcontentsline{toc}{subsection}{E Abstracts of related support grants}
+\newcommand{\EXISTINGSUPPORTABSTRACTS}{ExistingSupport_Abstracts.pdf}
+% Add section heading to the first page
+\includepdf[pages={1}, offset=0.0cm -1.0cm,
+            pagecommand=\section{Abstracts of existing related support grants}]
+           {\EXISTINGSUPPORTABSTRACTS}
+\includepdf[pages={2-}]{\EXISTINGSUPPORTABSTRACTS}
+\newpage
 
 %\appendix
 %\setcounter{section}{5}
 %\setcounter{subsection}{5}
 \addcontentsline{toc}{subsection}{F  Data management plan}
-\input{CG2019_2022_DataManagementPlan_v1.tex}
+\input{CG2019_2022_DataManagementPlan_v2.tex}
 \newpage
 
 \addcontentsline{toc}{subsection}{G Pathways to impact}
-\input{CG2019_2022_PathwaysImpact_v1.tex}
+%\input{CG2019_2022_PathwaysImpact_v1.tex}
+\input{CG2019_2022_PathwaysImpact_v2}
 \newpage
 
 

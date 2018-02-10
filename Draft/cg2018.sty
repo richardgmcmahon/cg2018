@@ -143,10 +143,9 @@
 %
 % https://tex.stackexchange.com/questions/59726/change-size-of-section-subsection-subsubsection-paragraph-and-subparagraph-ti
 % https://tex.stackexchange.com/questions/99170/starting-text-right-after-section-or-subsection-title
-\usepackage{titlesec}
-
-
-%\usepackage[compact]{titlesec}
+%\usepackage{titlesec}
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{0pt}{0pt}
 %\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
 %\titlespacing*{\section}{0pt}{*0}{0pt}
 % [runin] starts text on same line as title
@@ -207,10 +206,23 @@
 % i.e. table of contents has clickable bookmarks
 % use bookmark addon to which fixes some hyperref bugs
 % http://stackoverflow.com/questions/1483396/how-to-explicitly-end-a-part-in-latex-with-hyperref
+%\usepackage[colorlinks = true,
+%            linkcolor = blue,
+%            urlcolor  = blue,
+%            citecolor = blue,
+%            anchorcolor = blue]{bookmark, hyperref}
+% this is for the TOC
+%\usepackage{bookmark, hyperref}
 \usepackage{hyperref}
-\usepackage{bookmark,hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue}
-
+\usepackage{bookmark}
+%\hypersetup{colorlinks=true, linkcolor=blue}
+%\usepackage{hyperref}
+%\usepackage{bookmark,hyperref}
+\hypersetup{colorlinks=true,
+            urlcolor=blue,
+            citecolor=blue,
+            anchorcolor=blue,
+            linkcolor=blue}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -276,34 +288,6 @@
 %\usepackage{mathabx} % added 2018-01-02 for Ollie S \Earth symbol
 %\usepackage{stmaryrd}
 %\usepackage{times}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Figure related packages
-\usepackage{wrapfig}
-\usepackage{sidecap}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% package to load whole pdf pages e.g. Gannt Chart
-\usepackage{pdfpages}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% use this change section/subsection style figure numbers
-\usepackage{chngcntr}
-\counterwithin{figure}{section}
-%\counterwithin{figure}{subsection}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% use this to produce navigation hyperlinks for the pdf. 
-% i.e. table of contents has clickable bookmarks
-% use bookmark addon to which fixes some hyperref bugs
-% http://stackoverflow.com/questions/1483396/how-to-explicitly-end-a-part-in-latex-with-hyperref
-\usepackage{hyperref}
-\usepackage{bookmark,hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -528,8 +512,15 @@
 %RGM-2014-12-12
 \textwidth=17cm
 \textheight=26.2cm
+
+% these can tweaked at the end
+% \headsep=10pt
+%\footskip=20pt
+
 \topmargin=-2.5cm
+%\topmargin=-2.75cm
 \oddsidemargin=-0.5cm
+
 \parskip=0.15cm
 \parindent=0pt
 \marginparsep=5pt
